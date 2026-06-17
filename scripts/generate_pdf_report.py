@@ -186,12 +186,12 @@ def generate_report(data, output_path):
 
     # === COVER PAGE ===
     elements.append(Spacer(1, 1.5 * inch))
-    elements.append(Paragraph("Marketing Audit Report", title_style))
+    elements.append(Paragraph("Relatório de Auditoria de Marketing", title_style))
 
-    url = data.get("url", "example.com")
-    date_str = data.get("date", datetime.now().strftime("%B %d, %Y"))
+    url = data.get("url", "exemplo.com")
+    date_str = data.get("date", datetime.now().strftime("%d de %B de %Y"))
     elements.append(Paragraph(f"{url}", subtitle_style))
-    elements.append(Paragraph(f"Generated: {date_str}", subtitle_style))
+    elements.append(Paragraph(f"Gerado em: {date_str}", subtitle_style))
     elements.append(Spacer(1, 0.5 * inch))
 
     # Overall score gauge
@@ -201,20 +201,20 @@ def generate_report(data, output_path):
     elements.append(Spacer(1, 0.3 * inch))
 
     grade = "A+" if overall_score >= 90 else "A" if overall_score >= 80 else "B" if overall_score >= 70 else "C" if overall_score >= 60 else "D" if overall_score >= 50 else "F"
-    elements.append(Paragraph(f"Overall Marketing Score: {int(overall_score)}/100 (Grade: {grade})", heading_style))
+    elements.append(Paragraph(f"Pontuação Geral de Marketing: {int(overall_score)}/100 (Nota: {grade})", heading_style))
 
-    exec_summary = data.get("executive_summary", "This report provides a comprehensive analysis of the website's marketing effectiveness across content, conversion, SEO, competitive positioning, brand trust, and growth strategy.")
+    exec_summary = data.get("executive_summary", "Este relatório fornece uma análise abrangente da eficácia de marketing do site em conteúdo, conversão, SEO, posicionamento competitivo, confiança da marca e estratégia de crescimento.")
     elements.append(Paragraph(exec_summary, body_style))
 
     elements.append(PageBreak())
 
     # === SCORE BREAKDOWN ===
-    elements.append(Paragraph("Score Breakdown", heading_style))
+    elements.append(Paragraph("Detalhamento da Pontuação", heading_style))
 
     categories = data.get("categories", {})
     cat_names = list(categories.keys()) if categories else [
-        "Content & Messaging", "Conversion Optimization", "SEO & Discoverability",
-        "Competitive Positioning", "Brand & Trust", "Growth & Strategy"
+        "Conteúdo e Mensagem", "Otimização de Conversão", "SEO e Descoberta",
+        "Posicionamento Competitivo", "Marca e Confiança", "Estratégia de Crescimento"
     ]
     cat_scores = [categories.get(c, {}).get("score", 50) for c in cat_names] if categories else [65, 58, 72, 55, 68, 60]
 
@@ -224,10 +224,10 @@ def generate_report(data, output_path):
     elements.append(Spacer(1, 0.3 * inch))
 
     # Score table
-    score_data = [["Category", "Score", "Weight", "Status"]]
+    score_data = [["Categoria", "Pontuação", "Peso", "Status"]]
     weights = ["25%", "20%", "20%", "15%", "10%", "10%"]
     for i, (name, score) in enumerate(zip(cat_names, cat_scores)):
-        status = "Strong" if score >= 75 else "Needs Work" if score >= 50 else "Critical"
+        status = "Forte" if score >= 75 else "Precisa Melhorar" if score >= 50 else "Crítico"
         weight = weights[i] if i < len(weights) else "—"
         score_data.append([name, f"{int(score)}/100", weight, status])
 
@@ -249,31 +249,31 @@ def generate_report(data, output_path):
     elements.append(PageBreak())
 
     # === KEY FINDINGS ===
-    elements.append(Paragraph("Key Findings", heading_style))
+    elements.append(Paragraph("Principais Constatações", heading_style))
 
     findings = data.get("findings", [])
     if not findings:
         findings = [
-            {"severity": "Critical", "finding": "Homepage headline lacks clarity — visitors can't understand the value proposition in under 5 seconds"},
-            {"severity": "High", "finding": "No social proof on homepage — missing testimonials, client logos, and trust badges"},
-            {"severity": "High", "finding": "Primary CTA uses generic text ('Get Started') instead of value-driven copy"},
-            {"severity": "Medium", "finding": "Missing meta descriptions on key landing pages"},
-            {"severity": "Medium", "finding": "No email capture mechanism or lead magnet visible"},
-            {"severity": "Low", "finding": "Blog content lacks internal linking to product pages"},
+            {"severity": "Crítico", "finding": "A manchete da página inicial carece de clareza — os visitantes não conseguem entender a proposta de valor em menos de 5 segundos"},
+            {"severity": "Alta", "finding": "Sem prova social na página inicial — faltando depoimentos, logotipos de clientes e selos de confiança"},
+            {"severity": "Alta", "finding": "O CTA primário usa texto genérico ('Começar') em vez de uma copy focada em valor"},
+            {"severity": "Média", "finding": "Faltam meta descrições em páginas de destino importantes"},
+            {"severity": "Média", "finding": "Nenhum mecanismo de captura de e-mail ou isca digital visível"},
+            {"severity": "Baixa", "finding": "O conteúdo do blog carece de links internos para as páginas de produtos"},
         ]
 
-    findings_data = [["Severity", "Finding"]]
+    findings_data = [["Severidade", "Constatação"]]
     for f in findings:
-        severity = f.get("severity", "Medium")
+        severity = f.get("severity", "Média")
         finding = f.get("finding", "")
         findings_data.append([severity, Paragraph(finding, body_style)])
 
     findings_table = Table(findings_data, colWidths=[70, 400])
     severity_colors = {
-        "Critical": COLORS["danger"],
-        "High": COLORS["highlight"],
-        "Medium": COLORS["warning"],
-        "Low": COLORS["accent"]
+        "Crítico": COLORS["danger"],
+        "Alta": COLORS["highlight"],
+        "Média": COLORS["warning"],
+        "Baixa": COLORS["accent"]
     }
     table_style_cmds = [
         ("BACKGROUND", (0, 0), (-1, 0), COLORS["primary"]),
@@ -287,7 +287,7 @@ def generate_report(data, output_path):
         ("ALIGN", (0, 0), (0, -1), "CENTER"),
     ]
     for i, f in enumerate(findings, 1):
-        color = severity_colors.get(f.get("severity", "Medium"), COLORS["warning"])
+        color = severity_colors.get(f.get("severity", "Média"), COLORS["warning"])
         table_style_cmds.append(("TEXTCOLOR", (0, i), (0, i), color))
         table_style_cmds.append(("FONTNAME", (0, i), (0, i), "Helvetica-Bold"))
 
@@ -297,15 +297,15 @@ def generate_report(data, output_path):
     elements.append(PageBreak())
 
     # === ACTION PLAN ===
-    elements.append(Paragraph("Prioritized Action Plan", heading_style))
+    elements.append(Paragraph("Plano de Ação Priorizado", heading_style))
 
     # Quick Wins
-    elements.append(Paragraph("Quick Wins (This Week)", subheading_style))
+    elements.append(Paragraph("Ganhos Rápidos (Esta Semana)", subheading_style))
     quick_wins = data.get("quick_wins", [
-        "Rewrite homepage headline to be specific and benefit-driven",
-        "Add 3-5 client logos or trust badges above the fold",
-        "Change primary CTA to value-driven text (e.g., 'Start Free Trial — No Credit Card')",
-        "Add meta descriptions to top 5 landing pages",
+        "Reescrever a manchete da página inicial para ser específica e focada em benefícios",
+        "Adicionar 3-5 logotipos de clientes ou selos de confiança acima da dobra",
+        "Alterar o CTA primário para um texto focado em valor (ex: 'Iniciar Teste Grátis — Sem Cartão de Crédito')",
+        "Adicionar meta descrições às 5 principais págimas de destino",
     ])
     for i, win in enumerate(quick_wins, 1):
         elements.append(Paragraph(f"{i}. {win}", body_style))
@@ -313,12 +313,12 @@ def generate_report(data, output_path):
     elements.append(Spacer(1, 0.2 * inch))
 
     # Medium-Term
-    elements.append(Paragraph("Medium-Term (1-3 Months)", subheading_style))
+    elements.append(Paragraph("Médio Prazo (1-3 Meses)", subheading_style))
     medium_term = data.get("medium_term", [
-        "Build email capture funnel with lead magnet",
-        "Create comparison pages for top 3 competitors",
-        "Develop 3 case studies with measurable results",
-        "Implement blog content strategy targeting high-intent keywords",
+        "Construir funil de captura de e-mail com isca digital",
+        "Criar páginas de comparação para os 3 principais concorrentes",
+        "Desenvolver 3 estudos de caso com resultados mensuráveis",
+        "Implementar estratégia de conteúdo de blog visando palavras-chave de alta intenção",
     ])
     for i, action in enumerate(medium_term, 1):
         elements.append(Paragraph(f"{i}. {action}", body_style))
@@ -326,12 +326,12 @@ def generate_report(data, output_path):
     elements.append(Spacer(1, 0.2 * inch))
 
     # Strategic
-    elements.append(Paragraph("Strategic (3-6 Months)", subheading_style))
+    elements.append(Paragraph("Estratégico (3-6 Meses)", subheading_style))
     strategic = data.get("strategic", [
-        "Launch referral program with incentive structure",
-        "Build content authority hub with pillar content",
-        "Implement full-funnel retargeting campaign",
-        "Develop pricing optimization based on value metrics",
+        "Lançar programa de indicação com estrutura de incentivos",
+        "Construir hub de autoridade de conteúdo com conteúdo pilar",
+        "Implementar campanha de retargeting de funil completo",
+        "Desenvolver otimização de preços baseada em métricas de valor",
     ])
     for i, action in enumerate(strategic, 1):
         elements.append(Paragraph(f"{i}. {action}", body_style))
@@ -340,15 +340,15 @@ def generate_report(data, output_path):
 
     # === COMPETITOR SNAPSHOT ===
     if data.get("competitors"):
-        elements.append(Paragraph("Competitive Landscape", heading_style))
+        elements.append(Paragraph("Cenário Competitivo", heading_style))
 
-        comp_data = [["", data.get("brand_name", "Target")] + [c.get("name", f"Competitor {i+1}") for i, c in enumerate(data["competitors"][:3])]]
-        comp_rows = ["Positioning", "Pricing", "Social Proof", "Content"]
+        comp_data = [["", data.get("brand_name", "Alvo")] + [c.get("name", f"Concorrente {i+1}") for i, c in enumerate(data["competitors"][:3])]]
+        comp_rows = [["Posicionamento", "positioning"], ["Preço", "pricing"], ["Prova Social", "social_proof"], ["Conteúdo", "content"]]
 
-        for row_name in comp_rows:
-            row = [row_name, data.get("brand_name", "Target")]
+        for label, key in comp_rows:
+            row = [label, data.get("brand_name", "Alvo")]
             for comp in data["competitors"][:3]:
-                row.append(comp.get(row_name.lower().replace(" ", "_"), "—"))
+                row.append(comp.get(key, "—"))
             # Ensure consistent columns
             while len(row) < len(comp_data[0]):
                 row.append("—")
@@ -373,21 +373,21 @@ def generate_report(data, output_path):
         elements.append(PageBreak())
 
     # === METHODOLOGY ===
-    elements.append(Paragraph("Methodology", heading_style))
+    elements.append(Paragraph("Metodologia", heading_style))
     elements.append(Paragraph(
-        "This audit evaluates six key dimensions of marketing effectiveness. "
-        "Each category is scored 0-100 based on industry best practices and competitive benchmarks.",
+        "Esta auditoria avalia seis dimensões principais da eficácia de marketing. "
+        "Cada categoria é pontuada de 0 a 100 com base nas melhores práticas do setor e benchmarks competitivos.",
         body_style
     ))
 
     method_data = [
-        ["Category", "Weight", "What We Measure"],
-        ["Content & Messaging", "25%", "Copy quality, value proposition clarity, CTA effectiveness"],
-        ["Conversion Optimization", "20%", "Funnel design, forms, social proof, friction reduction"],
-        ["SEO & Discoverability", "20%", "On-page SEO, technical SEO, content structure"],
-        ["Competitive Positioning", "15%", "Market differentiation, pricing, alternatives strategy"],
-        ["Brand & Trust", "10%", "Design quality, trust signals, authority indicators"],
-        ["Growth & Strategy", "10%", "Pricing strategy, acquisition channels, retention"],
+        ["Categoria", "Peso", "O que Medimos"],
+        ["Conteúdo e Mensagem", "25%", "Qualidade da copy, clareza da proposta de valor, eficácia do CTA"],
+        ["Otimização de Conversão", "20%", "Design do funil, formulários, prova social, redução de fricção"],
+        ["SEO e Descoberta", "20%", "SEO on-page, SEO técnico, estrutura de conteúdo"],
+        ["Posicionamento Competitivo", "15%", "Diferenciação de mercado, preços, estratégia de alternativas"],
+        ["Marca e Confiança", "10%", "Qualidade do design, sinais de confiança, indicadores de autoridade"],
+        ["Estratégia de Crescimento", "10%", "Estratégia de preços, canais de aquisição, retenção"],
     ]
 
     method_table = Table(method_data, colWidths=[140, 50, 280])
@@ -406,7 +406,7 @@ def generate_report(data, output_path):
 
     elements.append(Spacer(1, 0.5 * inch))
     elements.append(Paragraph(
-        "Generated by AI Marketing Suite for Claude Code",
+        "Gerado pela AI Marketing Suite para Claude Code",
         ParagraphStyle("Footer", parent=body_style, fontSize=8, textColor=COLORS["text_light"])
     ))
 
