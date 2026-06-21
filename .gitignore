@@ -42,3 +42,17 @@ node_modules/
 
 GRUPO-JARDINS-*
 report_data.json
+# --- media/ + midia pesada (reorg 2026-06-18) ---
+media/
+broll_*/
+brolls_*/
+renders/
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.wav
+*.mp3
+*.jpg
+*.jpeg
+*.zip
