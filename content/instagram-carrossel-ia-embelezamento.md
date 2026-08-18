@@ -299,3 +299,17 @@ Vira análise de mercado: o ângulo do slide 8 (IA como topo de funil em estéti
 > estatística inventada destrói autoridade. Se quiser inserir um dado, os slides
 > 4 ou 6 são os pontos naturais — busque fonte real (sociedades de cirurgia
 > plástica, estudos de imagem corporal) e cite no slide.
+
+---
+
+## ARTES GERADAS
+
+Os 10 slides estão renderizados em `content/slides-ia-embelezamento/`
+(PNG, 1080×1350, prontos pra publicar).
+
+A fonte editável fica em `content/slides-ia-embelezamento/_fonte/` — edite o
+texto no `slides.html` e rode `node _fonte/render.mjs` pra re-exportar.
+
+**Ajuste de copy feito na arte:** o slide 6 diz "dezenas de vezes por dia"
+no lugar de "40x por dia" do roteiro original — o número não tinha fonte
+verificável e virava estatística inventada na peça.
