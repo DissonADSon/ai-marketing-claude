@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@import url("inter.css");
+
+:root{
+  --ink:#0B0B0C; --paper:#F2EFE9; --accent:#FF3B2F;
+  --dim-on-dark:rgba(242,239,233,.52);
+  --dim-on-light:rgba(11,11,12,.55);
+  --pad:92px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+.slide{
+  width:1080px;height:1350px;position:relative;overflow:hidden;
+  padding:var(--pad);display:flex;flex-direction:column;
+  background:var(--ink);color:var(--paper);
+}
+.slide.light{background:var(--paper);color:var(--ink)}
+.slide.pure{background:#000}
+.slide.acc{background:var(--accent);color:#0B0B0C}
+
+
+/* ================= versão fotográfica ================= */
+:root{--ph:repeating-linear-gradient(45deg,#242427 0 14px,#1c1c1e 14px 28px)}
+.port{position:absolute;inset:0;background-color:#242427;background-image:var(--ph);
+      background-size:cover;background-position:center 18%}
+.port.raw{background-image:url("fotos/raw.jpg"),var(--ph)}
+.port.fix{background-image:url("fotos/retocada.jpg"),var(--ph)}
+.photo{padding:0}
+.photo .inner{position:relative;z-index:3;padding:var(--pad);height:100%;display:flex;flex-direction:column}
+.stage{position:absolute;inset:0;z-index:1;overflow:hidden}
+.scrim{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(11,11,12,.82) 0%,rgba(11,11,12,.15) 32%,rgba(11,11,12,.55) 62%,#0B0B0C 88%)}
+.splitline{position:absolute;top:0;bottom:0;left:50%;width:2px;z-index:2;
+  background:repeating-linear-gradient(180deg,var(--accent) 0 14px,transparent 14px 26px)}
+.halflabel{position:absolute;top:300px;z-index:3;font-size:20px;font-weight:800;
+  letter-spacing:.2em;text-transform:uppercase}
+.halflabel.l{right:calc(50% + 26px);color:rgba(242,239,233,.7)}
+.halflabel.r{left:calc(50% + 26px);color:var(--accent)}
+.s1.photo .port.raw{clip-path:inset(0 50% 0 0);filter:saturate(.9)}
+.s1.photo .port.fix{clip-path:inset(0 0 0 50%)}
+.s1.photo h1{font-size:96px}
+.s1.photo .sub{margin-top:32px}
+/* painéis do slide 2 */
+.s2.photo .step{overflow:hidden;position:relative;border-color:rgba(242,239,233,.22)}
+.s2.photo .step .port{border-radius:18px}
+.s2.photo .step span{z-index:3;background:rgba(11,11,12,.78);padding:8px 16px;border-radius:100px}
+.s2.photo .step .veil{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,transparent 55%,rgba(11,11,12,.9) 100%)}
+.s2.photo .scan{position:absolute;inset:0;z-index:2}
+/* grade do slide 6 */
+.s6.photo .cell{overflow:hidden;position:relative}
+.s6.photo .cell .port{border-radius:12px;filter:grayscale(.25)}
+.s6.photo .cell.odd .port{filter:none}
+.s6.photo .cell.odd{box-shadow:0 0 0 3px var(--accent) inset}
+/* slide 5: retrato medido */
+.s5.photo{background:var(--paper)}
+.s5 .art .shot{position:relative;width:300px;height:375px;border-radius:8px;overflow:hidden}
+
+/* grain */
+.slide::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.055;
+  background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  background-size:5px 5px;
+}
+.slide.light::after,.slide.acc::after{
+  background-image:radial-gradient(circle at 1px 1px, #000 1px, transparent 0);opacity:.05
+}
+
+.kicker{
+  font-size:23px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:18px;
+}
+.slide.acc .kicker{color:#0B0B0C}
+.kicker::after{content:'';flex:1;height:2px;background:currentColor;opacity:.35}
+
+.ln{display:block}
+h1{font-weight:900;letter-spacing:-.035em;line-height:.99;text-transform:uppercase}
+h2{font-weight:900;letter-spacing:-.03em;line-height:1.02}
+.body{font-weight:400;line-height:1.42;color:var(--dim-on-dark)}
+.slide.light .body,.slide.acc .body{color:var(--dim-on-light)}
+.acct{color:var(--accent)}
+.slide.acc .acct{color:#fff}
+.spacer{flex:1}
+
+.num{
+  position:absolute;right:var(--pad);bottom:56px;
+  font-size:20px;font-weight:800;letter-spacing:.16em;opacity:.35
+}
+.swipe{
+  position:absolute;left:var(--pad);bottom:56px;
+  font-size:20px;font-weight:800;letter-spacing:.16em;opacity:.45
+}
+
+/* ---------- face glyph ---------- */
+.face{stroke-linecap:round}
+.face .raw{stroke-dasharray:7 11;opacity:.6}
+
+/* ---------- s1 ---------- */
+.s1 h1{font-size:104px}
+.s1 .sub{margin-top:44px;font-size:31px;line-height:1.35;color:var(--dim-on-dark);max-width:640px}
+.s1 .art{position:absolute;right:64px;bottom:132px}
+
+/* ---------- s2 ---------- */
+.s2 h2{font-size:76px;margin-top:38px}
+.s2 .chips{display:grid;grid-template-columns:repeat(2,max-content);gap:14px;margin-top:44px}
+.s2 .chip{border:2px solid rgba(242,239,233,.22);border-radius:100px;padding:14px 26px;font-size:26px;font-weight:500}
+.steps{display:flex;gap:22px;align-items:stretch;flex:1;margin-top:52px}
+.s2 .step{aspect-ratio:auto;flex:1}
+.step{flex:1;border:2px solid rgba(242,239,233,.18);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative}
+.step span{position:absolute;bottom:16px;font-size:18px;font-weight:700;letter-spacing:.12em;opacity:.5}
+.arrowmid{font-size:34px;opacity:.4;font-weight:300}
+.s2 .punch{display:flex;gap:40px;margin-top:52px}
+.s2 .punch b{font-size:38px;font-weight:900;letter-spacing:-.02em}
+
+/* ---------- s3 ---------- */
+.s3 h2{font-size:82px;margin-top:38px}
+.s3 h2 em{font-style:normal;color:var(--accent)}
+.s3 ul{list-style:none;flex:1;margin-top:56px;display:flex;flex-direction:column;gap:0}
+.s3 li{font-size:37px;font-weight:500;flex:1;border-top:2px solid rgba(242,239,233,.16);display:flex;gap:26px;align-items:center}
+.s3 li:last-child{border-bottom:2px solid rgba(242,239,233,.16)}
+.s3 li i{font-style:normal;color:var(--accent);font-weight:900}
+
+/* ---------- s4 ---------- */
+.s4 .rows{flex:1;margin-top:60px;display:flex;flex-direction:column;justify-content:space-evenly;gap:0}
+.s4 .row{display:flex;gap:36px;align-items:flex-start}
+.s4 .n{font-size:104px;font-weight:900;line-height:.8;letter-spacing:-.05em;color:var(--accent);min-width:150px}
+.s4 .t{font-size:44px;font-weight:900;letter-spacing:-.02em;line-height:1.05}
+.s4 .d{font-size:28px;margin-top:12px;color:var(--dim-on-dark);line-height:1.35}
+.s4 h2{font-size:64px;margin-top:34px;max-width:800px}
+
+/* ---------- s5 ---------- */
+.s5 h2{font-size:80px;margin-top:38px}
+.s5 .body{font-size:33px;margin-top:38px;max-width:830px}
+.s5 .art{flex:1;display:flex;align-items:center;justify-content:center}
+.s5 .pull{margin-top:0;border-left:10px solid var(--accent);padding:12px 0 12px 34px;font-size:52px;font-weight:900;letter-spacing:-.025em;line-height:1.06}
+
+/* ---------- s6 ---------- */
+.s6 h2{font-size:70px;margin-top:30px}
+.s6 .body{font-size:29px;margin-top:30px;max-width:800px}
+.s6 .grid{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.s6 .cell{aspect-ratio:1.14;border:2px solid rgba(242,239,233,.14);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.s6 .cell.odd{border-color:var(--accent);background:rgba(255,59,47,.09)}
+.s6 .tag{margin-top:30px;font-size:29px;font-weight:800;letter-spacing:.02em}
+
+/* ---------- s7 ---------- */
+.s7{justify-content:center}
+.s7 h1{font-size:160px;line-height:.95}
+.s7 .body{font-size:34px;margin-top:52px;max-width:800px;line-height:1.4}
+.s7 .rule{width:150px;height:8px;background:var(--accent);margin-bottom:52px}
+.s7 .kill{margin-top:44px;font-size:34px;font-weight:900;letter-spacing:-.015em;line-height:1.25}
+
+/* ---------- s8 ---------- */
+.s8 h2{font-size:70px;margin-top:34px;max-width:860px}
+.s8 .funnel{flex:1;margin-top:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.s8 .fs{height:88px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.s8 .f1{width:100%;background:rgba(255,59,47,.14);border:2px solid rgba(255,59,47,.4);color:var(--paper)}
+.s8 .f2{width:74%;background:rgba(255,59,47,.3);border:2px solid rgba(255,59,47,.6);color:var(--paper)}
+.s8 .f3{width:48%;background:var(--accent);color:#0B0B0C}
+.s8 .tags{margin-top:46px;display:flex;gap:12px}
+.s8 .tg{flex:1;border:2px solid rgba(242,239,233,.2);border-radius:12px;padding:22px 10px;text-align:center;font-size:24px;font-weight:800;letter-spacing:.04em}
+.s8 .close{margin-top:34px;font-size:44px;font-weight:900;letter-spacing:-.025em;line-height:1.1}
+
+/* ---------- s9 ---------- */
+.s9{justify-content:center}
+.s9 .small{font-size:38px;font-weight:500;line-height:1.34;color:var(--dim-on-light);max-width:780px}
+.s9 h2{font-size:96px;margin-top:70px;letter-spacing:-.04em}
+.s9 h2 em{font-style:normal;color:var(--accent)}
+
+/* ---------- s10 ---------- */
+.s10 h2{font-size:74px;margin-top:36px;line-height:1.02}
+.s10 .boxes{flex:1;margin-top:52px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.s10 .bx{border:4px solid #0B0B0C;border-radius:18px;padding:38px 40px;font-size:60px;font-weight:900;letter-spacing:-.03em;display:flex;justify-content:space-between;align-items:center}
+.s10 .bx b{font-size:34px;opacity:.62}
+.s10 .cta{margin-top:52px;font-size:32px;font-weight:500;line-height:1.4}
+.s10 .cta strong{font-weight:900}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="mesh" fill="none">
+  <path d="M50 8c-19 0-30 13-30 33 0 9 1 17 3 25 4 16 15 34 27 34s23-18 27-34c2-8 3-16 3-25 0-20-11-33-30-33z" stroke="currentColor" stroke-width="1.7"/>
+  <g stroke="currentColor" stroke-width=".85" opacity=".45">
+    <path d="M32 40 50 33 68 40M32 40 50 58 68 40M32 40 38 62 50 58M68 40 62 62 50 58M38 62 50 78 62 62M50 58V78M26 52 38 62M74 52 62 62M50 78 42 88M50 78 58 88M42 88h16M42 88 50 100 58 88M26 52 32 40M74 52 68 40"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="32" cy="40" r="2.5"/><circle cx="68" cy="40" r="2.5"/><circle cx="50" cy="33" r="2"/>
+    <circle cx="50" cy="58" r="2.5"/><circle cx="38" cy="62" r="2"/><circle cx="62" cy="62" r="2"/>
+    <circle cx="50" cy="78" r="2.5"/><circle cx="42" cy="88" r="2"/><circle cx="58" cy="88" r="2"/>
+    <circle cx="26" cy="52" r="2"/><circle cx="74" cy="52" r="2"/><circle cx="50" cy="100" r="2"/>
+  </g>
+</g>
+<clipPath id="lh"><rect x="0" y="0" width="50" height="112"/></clipPath>
+<clipPath id="rh"><rect x="50" y="0" width="50" height="112"/></clipPath>
+</defs></svg>
+
+<!-- ============ 01 ============ -->
+<div class="slide s1 photo" id="s1">
+  <div class="stage">
+    <div class="port raw"></div><div class="port fix"></div>
+    <div class="splitline"></div>
+  </div>
+  <div class="scrim"></div>
+  <div class="halflabel l">sem filtro</div><div class="halflabel r">com IA</div>
+  <div class="inner">
+    <div class="kicker">IA + Estética</div>
+    <div class="spacer"></div>
+    <h1><span class="ln">Agora dá</span><span class="ln">pra “operar”</span><span class="ln">o rosto sem</span><span class="ln">sair do sofá.</span></h1>
+    <div class="sub">o problema não é a tecnologia.<br>é o que ela ensina o seu cérebro.</div>
+  </div>
+  <div class="swipe">ARRASTA →</div><div class="num">01</div>
+</div>
+
+<!-- ============ 02 ============ -->
+<div class="slide s2 photo" id="s2">
+  <div class="kicker">O que está acontecendo</div>
+  <h2><span class="ln">Você manda uma selfie.</span><span class="ln">A IA devolve você</span><span class="ln">“melhorado”.</span></h2>
+  <div class="chips">
+    <div class="chip">nariz afinado</div><div class="chip">mandíbula marcada</div>
+    <div class="chip">pele sem poro</div><div class="chip">olhar simétrico</div>
+  </div>
+  <div class="punch">
+    <div><b class="acct">8 seg</b></div><div><b>de graça</b></div><div><b>no celular</b></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="port raw"></div><div class="veil"></div><span>SELFIE</span></div>
+    <div class="arrowmid">→</div>
+    <div class="step"><div class="port raw"></div><div class="veil"></div><svg class="scan" viewBox="0 0 100 112" preserveAspectRatio="none"><g stroke="#FF3B2F" stroke-width=".7" opacity=".95"><line x1="0" y1="38" x2="100" y2="38"/><line x1="0" y1="56" x2="100" y2="56"/><line x1="0" y1="74" x2="100" y2="74"/></g></svg><svg class="scan" viewBox="0 0 100 112"><g style="color:#FF3B2F"><use href="#mesh"/></g></svg><span>IA</span></div>
+    <div class="arrowmid">→</div>
+    <div class="step"><div class="port fix"></div><div class="veil"></div><span>“VOCÊ”</span></div>
+  </div>
+  <div class="num">02</div>
+</div>
+
+<!-- ============ 03 ============ -->
+<div class="slide s3" id="s3">
+  <div class="kicker">E foi além</div>
+  <h2><span class="ln">Deixou de ser filtro.</span><span class="ln">Virou <em>pré-visualização</span><span class="ln">cirúrgica.</em></span></h2>
+  <ul>
+    <li><i>→</i><span>simular rinoplastia antes da consulta</span></li>
+    <li><i>→</i><span>testar preenchimento sem agulha</span></li>
+    <li><i>→</i><span>“provar” harmonização facial</span></li>
+    <li><i>→</i><span>levar a imagem pronta pro cirurgião</span></li>
+  </ul>
+  <div class="num">03</div>
+</div>
+
+<!-- ============ 04 ============ -->
+<div class="slide s4" id="s4">
+  <div class="kicker">Por que explodiu agora</div>
+  <h2><span class="ln">3 coisas aconteceram</span><span class="ln">ao mesmo tempo.</span></h2>
+  <div class="rows">
+    <div class="row"><div class="n">01</div><div><div class="t">A IA ficou boa demais</div><div class="d">o resultado deixou de parecer fake</div></div></div>
+    <div class="row"><div class="n">02</div><div><div class="t">Ficou grátis</div><div class="d">antes: uma consulta. agora: um app.</div></div></div>
+    <div class="row"><div class="n">03</div><div><div class="t">Ficou pública</div><div class="d">o “antes e depois” virou conteúdo</div></div></div>
+  </div>
+  <div class="num">04</div>
+</div>
+
+<!-- ============ 05 ============ -->
+<div class="slide s5 light photo" id="s5">
+  <div class="kicker">O lado bom — e ele existe</div>
+  <h2><span class="ln">Não é tudo distopia.</span></h2>
+  <div class="body">Simulação realista reduz frustração pós-operatória. O paciente chega na consulta sabendo o que quer — e o profissional consegue dizer <strong>“isso não é possível”</strong> antes de operar.</div>
+  <div class="art"><div class="shot"><div class="port raw"></div>
+    <svg viewBox="0 0 100 112" style="position:absolute;inset:0;color:#FF3B2F"><use href="#mesh"/></svg>
+    </div></div>
+  <div class="pull">Expectativa alinhada<br>é segurança clínica.</div>
+  <div class="num" style="opacity:.4">05</div>
+</div>
+
+<!-- ============ 06 ============ -->
+<div class="slide s6 photo" id="s6">
+  <div class="kicker">O lado que ninguém posta</div>
+  <h2><span class="ln">Só que o cérebro</span><span class="ln">não sabe que</span><span class="ln">é filtro.</span></h2>
+  <div class="body">Você olha dezenas de vezes por dia uma versão sua que não existe. Aí olha no espelho e sente que o espelho está errado.</div>
+  <div class="grid"><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell odd"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div><div class="cell"><div class="port fix"></div></div></div>
+  <div class="tag">Tem nome pra isso. <span class="acct">→</span></div>
+  <div class="num">06</div>
+</div>
+
+<!-- ============ 07 ============ -->
+<div class="slide s7 pure" id="s7">
+  <div class="rule"></div>
+  <h1><span class="ln">Dismorfia</span><span class="ln">digital</span></h1>
+  <div class="body">Quando a referência de “eu normal” deixa de ser o seu rosto — e passa a ser a sua versão editada.</div>
+  <div class="kill">O padrão não é mais outra pessoa.<br>É você mesmo. <span class="acct">Retocado.</span><br><br>E esse é impossível de alcançar.</div>
+  <div class="num">07</div>
+</div>
+
+<!-- ============ 08 ============ -->
+<div class="slide s8" id="s8">
+  <div class="kicker">Quem está lucrando</div>
+  <h2><span class="ln">A imagem gerada por IA</span><span class="ln">virou a nova porta</span><span class="ln">de entrada.</span></h2>
+  <div class="funnel">
+    <div class="fs f1">vê o “antes e depois”</div>
+    <div class="fs f2">gera o próprio rosto</div>
+    <div class="fs f3">agenda a consulta</div>
+  </div>
+  <div class="tags">
+    <div class="tg">reduz<br>objeção</div><div class="tg">encurta<br>o funil</div><div class="tg">aumenta<br>ticket</div>
+  </div>
+  <div class="close">Isso é marketing.<br><span class="acct">Não é acaso.</span></div>
+  <div class="num">08</div>
+</div>
+
+<!-- ============ 09 ============ -->
+<div class="slide s9 light" id="s9">
+  <div class="small">A IA não criou a insatisfação com o rosto.<br>Ela só tornou a “correção” rápida, barata e infinita.</div>
+  <h2><span class="ln">Quem definiu</span><span class="ln">o rosto que ela</span><span class="ln">usa como <em>padrão?</em></span></h2>
+  <div class="num" style="opacity:.4">09</div>
+</div>
+
+<!-- ============ 10 ============ -->
+<div class="slide s10 acc" id="s10">
+  <div class="kicker">Sua vez</div>
+  <h2><span class="ln">Usar IA pra simular</span><span class="ln">mudança no rosto é:</span></h2>
+  <div class="boxes">
+    <div class="bx">FERRAMENTA <b>comenta 1</b></div>
+    <div class="bx">ARMADILHA <b>comenta 2</b></div>
+  </div>
+  <div class="cta"><strong>Salva esse post</strong><br>pra quando essa conversa<br>chegar na sua timeline.</div>
+  <div class="num" style="opacity:.5">10</div>
+</div>
+
+</body></html>

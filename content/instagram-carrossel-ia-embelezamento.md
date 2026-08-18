@@ -313,3 +313,18 @@ texto no `slides.html` e rode `node _fonte/render.mjs` pra re-exportar.
 **Ajuste de copy feito na arte:** o slide 6 diz "dezenas de vezes por dia"
 no lugar de "40x por dia" do roteiro original — o número não tinha fonte
 verificável e virava estatística inventada na peça.
+
+---
+
+## VERSÃO COM ROSTOS REAIS
+
+Existe uma segunda montagem, com fotografia no lugar do glifo vetorial:
+
+- Arte: `content/slides-ia-embelezamento-fotos/`
+- Fonte: `_fonte/slides-fotos.html` + `_fonte/render-fotos.mjs`
+
+Ela depende de duas imagens que ainda **não** estão no repositório —
+`_fonte/fotos/raw.jpg` e `_fonte/fotos/retocada.jpg`. Enquanto faltarem, os
+slides 1, 2, 5 e 6 renderizam com placeholder listrado no lugar do rosto.
+
+Especificação completa das duas imagens em `_fonte/fotos/BRIEFING.md`.
