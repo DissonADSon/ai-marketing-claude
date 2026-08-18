@@ -29,6 +29,9 @@ body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoot
 .port.raw{background-image:url("fotos/raw.jpg"),var(--ph)}
 .port.fix{background-image:url("fotos/retocada.jpg"),var(--ph)}
 .port.capa{background-image:url("fotos/capa.jpg"),var(--ph)}
+.port.capaL,.port.capaR{background-image:url("fotos/capa.jpg"),var(--ph);background-size:200% auto}
+.port.capaL{background-position:left 22%}
+.port.capaR{background-position:right 22%}
 .photo{padding:0}
 .photo .inner{position:relative;z-index:3;padding:var(--pad);height:100%;display:flex;flex-direction:column}
 .stage{position:absolute;inset:0;z-index:1;overflow:hidden}
@@ -223,11 +226,11 @@ h2{font-weight:900;letter-spacing:-.03em;line-height:1.02}
     <div><b class="acct">8 seg</b></div><div><b>de graça</b></div><div><b>no celular</b></div>
   </div>
   <div class="steps">
-    <div class="step"><div class="port raw"></div><div class="veil"></div><span>SELFIE</span></div>
+    <div class="step"><div class="port capaL"></div><div class="veil"></div><span>SELFIE</span></div>
     <div class="arrowmid">→</div>
-    <div class="step"><div class="port raw"></div><div class="veil"></div><svg class="scan" viewBox="0 0 100 112" preserveAspectRatio="none"><g stroke="#FF3B2F" stroke-width=".7" opacity=".95"><line x1="0" y1="38" x2="100" y2="38"/><line x1="0" y1="56" x2="100" y2="56"/><line x1="0" y1="74" x2="100" y2="74"/></g></svg><svg class="scan" viewBox="0 0 100 112"><g style="color:#FF3B2F"><use href="#mesh"/></g></svg><span>IA</span></div>
+    <div class="step"><div class="port capaL"></div><div class="veil"></div><svg class="scan" viewBox="0 0 100 112" preserveAspectRatio="none"><g stroke="#FF3B2F" stroke-width=".7" opacity=".95"><line x1="0" y1="38" x2="100" y2="38"/><line x1="0" y1="56" x2="100" y2="56"/><line x1="0" y1="74" x2="100" y2="74"/></g></svg><svg class="scan" viewBox="0 0 100 112"><g style="color:#FF3B2F"><use href="#mesh"/></g></svg><span>IA</span></div>
     <div class="arrowmid">→</div>
-    <div class="step"><div class="port fix"></div><div class="veil"></div><span>“VOCÊ”</span></div>
+    <div class="step"><div class="port capaR"></div><div class="veil"></div><span>“VOCÊ”</span></div>
   </div>
   <div class="num">02</div>
 </div>
