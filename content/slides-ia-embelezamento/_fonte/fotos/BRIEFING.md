@@ -66,3 +66,22 @@ Metade da capa é rotulada "sem filtro" e o carrossel inteiro discute defeito
 facial. Usar o rosto de uma pessoa real nesse papel é injusto com ela,
 independente da licença da foto. Rosto gerado resolve isso e o licenciamento
 de uma vez.
+
+## Gerar automaticamente via kie.ai
+
+```bash
+KIE_API_KEY=sua_chave node content/slides-ia-embelezamento/_fonte/gerar-fotos.mjs
+node content/slides-ia-embelezamento/_fonte/render-fotos.mjs
+```
+
+O script gera o `raw.jpg` primeiro e depois passa **a própria imagem do raw
+como referência** para gerar a `retocada.jpg` — é isso que garante que as duas
+sejam a mesma pessoa. Sem esse encadeamento a capa dividida ao meio não fecha.
+
+A chave é lida do ambiente e nunca escrita em disco.
+
+Os IDs de modelo têm override por variável, caso os padrões mudem:
+
+```bash
+KIE_MODEL_TXT=google/nano-banana KIE_MODEL_IMG=google/nano-banana-edit ...
+```
