@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@import url("inter.css");
+
+:root{--ink:#0B0B0C;--paper:#F2EFE9;--accent:#FF3B2F;--ok:#12B76A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+.art{position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--ink);color:var(--paper)}
+.a45{width:1080px;height:1350px;padding:76px}
+.a11{width:1080px;height:1080px;padding:68px}
+.a916{width:1080px;height:1920px;padding:88px}
+
+.art::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.055;
+  background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:5px 5px}
+
+.kicker{font-size:22px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:16px}
+.kicker::after{content:'';flex:1;height:2px;background:currentColor;opacity:.35}
+
+.ln{display:block}
+h1{font-weight:900;letter-spacing:-.035em;line-height:.97;text-transform:uppercase;margin-top:30px}
+h1 em{font-style:normal;color:var(--accent)}
+
+/* par antes/depois */
+.par{display:flex;gap:20px;min-height:0}
+.cel{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+.jan{position:relative;overflow:hidden;border-radius:16px;border:3px solid;flex:1;min-height:0}
+.jan img{position:absolute;max-width:none}
+.cel.erro .jan{border-color:var(--accent)}
+.cel.certo .jan{border-color:var(--ok)}
+.tag{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:900;letter-spacing:.12em}
+.cel.erro .tag{color:var(--accent)}
+.cel.certo .tag{color:var(--ok)}
+.tag i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  font-size:20px;color:#0B0B0C;flex:none}
+.cel.erro .tag i{background:var(--accent)}
+.cel.certo .tag i{background:var(--ok)}
+.como{font-size:22px;font-weight:500;line-height:1.34;color:rgba(242,239,233,.6)}
+
+/* regra */
+.regra{background:var(--accent);color:#0B0B0C;border-radius:20px;padding:34px 36px}
+.regra b{display:block;font-size:44px;font-weight:900;letter-spacing:-.03em;line-height:1.04}
+.regra span{display:block;margin-top:16px;font-size:25px;font-weight:500;line-height:1.34;color:rgba(11,11,12,.72)}
+
+.ass{display:flex;align-items:center;justify-content:space-between;
+  font-size:22px;font-weight:800;letter-spacing:.14em;opacity:.5}
+
+/* medidas por formato — o recorte precisa cair em cima do S, que e a prova */
+.a45 h1{font-size:74px}
+.a45 .par{margin-top:38px;height:520px}
+.a45 .jan img{width:1634px;left:-983px;top:-83px}
+.a45 .cel.certo .jan img{top:-189px}
+.a45 .regra{margin-top:38px}
+.a45 .ass{margin-top:auto;padding-top:34px}
+
+.a11 h1{font-size:60px;margin-top:24px}
+.a11 .par{margin-top:30px;height:376px}
+.a11 .jan img{width:1663px;left:-1001px;top:-85px}
+.a11 .cel.certo .jan img{top:-192px}
+.a11 .regra{margin-top:30px;padding:28px 30px}
+.a11 .regra b{font-size:36px}
+.a11 .regra span{font-size:22px;margin-top:12px}
+.a11 .ass{margin-top:auto;padding-top:26px}
+
+.a916 h1{font-size:88px;margin-top:44px}
+.a916 .par{margin-top:56px;height:700px}
+.a916 .jan img{width:1591px;left:-957px;top:-81px}
+.a916 .cel.certo .jan img{top:-184px}
+.a916 .tag{font-size:27px}
+.a916 .como{font-size:26px}
+.a916 .regra{margin-top:56px;padding:44px 44px}
+.a916 .regra b{font-size:56px}
+.a916 .regra span{font-size:30px;margin-top:20px}
+.a916 .ass{margin-top:auto;padding-top:44px;font-size:25px}
+</style></head><body>
+
+<!-- ============ 4:5 ============ -->
+<div class="art a45" id="c45">
+  <div class="kicker">IA para criativo</div>
+  <h1><span class="ln">A IA não escreve.</span><span class="ln">Ela <em>desenha</em> letra.</span></h1>
+
+  <div class="par">
+    <div class="cel erro">
+      <div class="tag"><i>✕</i>PEDI TUDO JUNTO</div>
+      <div class="jan"><img src="criativos/c3-v1.jpg" alt=""></div>
+      <div class="como">Imagem e headline no mesmo prompt. Voltou com cedilha embaixo do S.</div>
+    </div>
+    <div class="cel certo">
+      <div class="tag"><i>✓</i>SEPAREI</div>
+      <div class="jan"><img src="criativos/c3.jpg" alt=""></div>
+      <div class="como">Foto limpa pela IA. Tipografia por cima, em código.</div>
+    </div>
+  </div>
+
+  <div class="regra">
+    <b>Modelo de imagem acerta 9 em 10 — e não te avisa qual foi a décima.</b>
+    <span>Gere a foto sem uma palavra dentro. O texto entra depois. Aí trocar headline vira 1 linha, não 1 job de design.</span>
+  </div>
+
+  <div class="ass"><span>@DISSONDOTRAFEGO</span><span>TRÁFEGO · IA · AUTOMAÇÃO</span></div>
+</div>
+
+<!-- ============ 1:1 ============ -->
+<div class="art a11" id="c11">
+  <div class="kicker">IA para criativo</div>
+  <h1><span class="ln">A IA não escreve.</span><span class="ln">Ela <em>desenha</em> letra.</span></h1>
+
+  <div class="par">
+    <div class="cel erro">
+      <div class="tag"><i>✕</i>TUDO JUNTO</div>
+      <div class="jan"><img src="criativos/c3-v1.jpg" alt=""></div>
+    </div>
+    <div class="cel certo">
+      <div class="tag"><i>✓</i>SEPARADO</div>
+      <div class="jan"><img src="criativos/c3.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <div class="regra">
+    <b>Foto pela IA. Texto por código.</b>
+    <span>Trocar headline vira 1 linha de texto, não 1 job de design.</span>
+  </div>
+
+  <div class="ass"><span>@DISSONDOTRAFEGO</span><span>TRÁFEGO · IA · AUTOMAÇÃO</span></div>
+</div>
+
+<!-- ============ 9:16 ============ -->
+<div class="art a916" id="c916">
+  <div class="kicker">IA para criativo</div>
+  <h1><span class="ln">A IA não</span><span class="ln">escreve.</span><span class="ln">Ela <em>desenha</em></span><span class="ln">letra.</span></h1>
+
+  <div class="par">
+    <div class="cel erro">
+      <div class="tag"><i>✕</i>TUDO JUNTO</div>
+      <div class="jan"><img src="criativos/c3-v1.jpg" alt=""></div>
+      <div class="como">Imagem e headline no mesmo prompt.</div>
+    </div>
+    <div class="cel certo">
+      <div class="tag"><i>✓</i>SEPARADO</div>
+      <div class="jan"><img src="criativos/c3.jpg" alt=""></div>
+      <div class="como">Foto limpa. Texto por código.</div>
+    </div>
+  </div>
+
+  <div class="regra">
+    <b>Acerta 9 em 10 — e não te avisa qual foi a décima.</b>
+    <span>Gere a foto sem uma palavra dentro. Aí trocar headline vira 1 linha, não 1 job de design.</span>
+  </div>
+
+  <div class="ass"><span>@DISSONDOTRAFEGO</span><span>TRÁFEGO · IA · AUTOMAÇÃO</span></div>
+</div>
+
+</body></html>
