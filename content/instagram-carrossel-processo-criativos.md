@@ -75,3 +75,30 @@ Todos já no repositório, nada foi gerado a mais para este carrossel:
 - `_fonte/criativos/c3-v1.jpg` — a saída com o `Ş` fantasma, prova do slide 2
 - `_fonte/seiva/*.jpg` — as 4 fotos de produto da leva única, slide 5
 - `content/marca-seiva/*.png` — as peças de anúncio, slides 1, 6 e 7
+
+---
+
+## Publicação
+
+| Conta | Rede | Status | Link |
+|---|---|---|---|
+| Disson do Tráfego (página) | Facebook | publicado | https://facebook.com/343130379716740_1606018177547397 |
+| ADSon Soluções Tecnológicas | LinkedIn | publicado | https://linkedin.com/feed/update/urn:li:ugcPost:7495935844290215937 |
+| dissondotrafego | Instagram | **bloqueado** | classificador do ambiente de execução |
+| Anderson Simão | LinkedIn | **bloqueado** | classificador do ambiente de execução |
+| dissondotrafego | X / Twitter | **falhou** | a API do X respondeu "You are not permitted to perform this action" — é permissão do app/conta no X, não do ambiente |
+
+Nenhuma conta de cliente foi usada.
+
+O Instagram é a conta que mais importa para este conteúdo e ficou de fora. As dez artes já estão hospedadas e prontas para subir manualmente ou por uma sessão com permissão de publicação:
+
+1. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/77651bb7-e9ee-4c29-b25b-115c7ed26a9f.png
+2. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/d52f7c0d-c6e6-4134-9ac2-fb596111d035.png
+3. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/d54f0031-a0ad-4cfd-a4d2-9893ccc602ab.png
+4. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/5a138d2b-1ca9-4a14-bf89-4314db6be429.png
+5. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/4033657e-8545-447e-821a-41c859396bd9.png
+6. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/311e0f2c-8465-44b7-98e7-fa2812519116.png
+7. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/9013b01c-d9c2-429c-bb13-7979567f6e9e.png
+8. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/1ad99d6c-e12e-4a82-bf2c-4ef9ee9038ac.png
+9. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/c7e51010-ac0e-404a-96b0-4af689c363c2.png
+10. https://database.blotato.io/storage/v1/object/public/public_media/17f594e8-e53a-402d-8125-e222c160d7c4/15babf59-cdd8-4d55-bd49-7a298ad0a3c0.png
