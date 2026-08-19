@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@import url("inter.css");
+
+:root{
+  --ink:#0B0B0C; --paper:#F2EFE9; --accent:#FF3B2F;
+  --dim-on-dark:rgba(242,239,233,.52);
+  --dim-on-light:rgba(11,11,12,.55);
+  --pad:92px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+.slide{
+  width:1080px;height:1350px;position:relative;overflow:hidden;
+  padding:var(--pad);display:flex;flex-direction:column;
+  background:var(--ink);color:var(--paper);
+}
+.slide.light{background:var(--paper);color:var(--ink)}
+.slide.acc{background:var(--accent);color:#0B0B0C}
+
+.slide::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.055;
+  background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  background-size:5px 5px;
+}
+.slide.light::after,.slide.acc::after{
+  background-image:radial-gradient(circle at 1px 1px, #000 1px, transparent 0);opacity:.05
+}
+
+.kicker{
+  font-size:23px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:18px;
+}
+.slide.acc .kicker{color:#0B0B0C}
+.kicker::after{content:'';flex:1;height:2px;background:currentColor;opacity:.35}
+
+.ln{display:block}
+h1{font-weight:900;letter-spacing:-.035em;line-height:.99;text-transform:uppercase}
+h2{font-weight:900;letter-spacing:-.03em;line-height:1.02}
+.sub{font-weight:400;line-height:1.38;color:var(--dim-on-dark)}
+.slide.light .sub{color:var(--dim-on-light)}
+.slide.acc .sub{color:rgba(11,11,12,.68)}
+.acct{color:var(--accent)}
+.spacer{flex:1}
+
+.num{position:absolute;right:var(--pad);bottom:56px;font-size:20px;font-weight:800;letter-spacing:.16em;opacity:.35}
+.swipe{position:absolute;left:var(--pad);bottom:56px;font-size:20px;font-weight:800;letter-spacing:.16em;opacity:.45}
+
+.etapa{
+  display:inline-block;border:2px solid currentColor;border-radius:100px;
+  padding:9px 22px;font-size:19px;font-weight:800;letter-spacing:.16em;opacity:.75
+}
+
+/* ---------- s1 capa ---------- */
+.s1 h1{font-size:100px}
+.s1 .sub{margin-top:40px;font-size:31px;max-width:700px}
+.s1 .strip{margin-top:auto;margin-bottom:104px;display:flex;gap:18px}
+.s1 .strip img{width:calc((100% - 36px)/3);aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block}
+
+/* ---------- s2 o erro ---------- */
+.s2 h2{font-size:64px;margin-top:34px}
+.s2 .zoom{
+  margin-top:40px;height:360px;border-radius:18px;overflow:hidden;position:relative;
+  border:3px solid var(--accent)
+}
+.s2 .zoom img{position:absolute;width:1250px;left:-150px;top:-62px;max-width:none}
+.s2 .selo{
+  position:absolute;right:16px;bottom:16px;background:var(--accent);color:#0B0B0C;
+  border-radius:100px;padding:9px 20px;font-size:18px;font-weight:800;letter-spacing:.14em
+}
+.s2 .diag{flex:1;margin-top:40px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+.s2 .diag p{font-size:31px;line-height:1.38;color:var(--dim-on-dark)}
+.s2 .diag b{color:var(--paper);font-weight:800}
+
+/* ---------- s3 a regra ---------- */
+.s3{justify-content:center}
+.s3 h1{font-size:104px;margin-top:38px}
+.s3 .sub{margin-top:44px;font-size:33px;max-width:820px}
+.s3 .barra{display:flex;gap:0;margin-top:56px;border:3px solid #0B0B0C;border-radius:18px;overflow:hidden}
+.s3 .barra div{flex:1;padding:30px 28px;font-size:25px;font-weight:800;line-height:1.28}
+.s3 .barra div:first-child{background:#0B0B0C;color:var(--accent)}
+
+/* ---------- etapas genéricas ---------- */
+.et h2{font-size:66px;margin-top:26px}
+.et .sub{margin-top:26px;font-size:29px;max-width:860px}
+
+/* s4 marca antes da arte */
+.s4 .grade{flex:1;margin-top:48px;display:flex;flex-direction:column;justify-content:center;gap:0}
+.s4 .row{display:flex;gap:28px;align-items:center;padding:26px 0;border-top:2px solid rgba(11,11,12,.16);font-size:30px;font-weight:500}
+.s4 .row:last-child{border-bottom:2px solid rgba(11,11,12,.16)}
+.s4 .row i{font-style:normal;font-weight:900;color:var(--accent);min-width:250px;font-size:25px;letter-spacing:.04em;text-transform:uppercase}
+
+/* s5 uma leva só */
+.s5 .fotos{flex:1;min-height:0;margin-top:44px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.s5 .fotos img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block}
+.s5 .nota{margin-top:34px;font-size:27px;line-height:1.38;color:var(--dim-on-dark)}
+
+/* s6 mesma foto três anúncios */
+.s6 .ads{flex:1;margin-top:44px;display:flex;gap:18px;align-items:center}
+.s6 .ads img{width:calc((100% - 36px)/3);aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block}
+.s6 .nota{margin-top:34px;font-size:27px;line-height:1.38;color:var(--dim-on-dark)}
+
+/* s7 formatos */
+.s7 .fmt{flex:1;margin-top:48px;display:flex;gap:26px;align-items:center;justify-content:center}
+.s7 .cel{display:flex;flex-direction:column;align-items:center;gap:16px}
+.s7 .cel img{object-fit:cover;border-radius:12px;display:block;box-shadow:0 10px 34px rgba(11,11,12,.22)}
+.s7 .r45 img{width:270px;height:337px}
+.s7 .r11 img{width:270px;height:270px}
+.s7 .r916 img{width:190px;height:338px}
+.s7 .cel span{font-size:22px;font-weight:800;letter-spacing:.14em;opacity:.55}
+.s7 .nota{margin-top:36px;font-size:28px;line-height:1.38;color:var(--dim-on-light)}
+
+/* s8 validação */
+.s8 ul{list-style:none;flex:1;margin-top:48px;display:flex;flex-direction:column}
+.s8 li{
+  font-size:31px;font-weight:500;flex:1;display:flex;gap:24px;align-items:center;
+  border-top:2px solid rgba(242,239,233,.16)
+}
+.s8 li:last-child{border-bottom:2px solid rgba(242,239,233,.16)}
+.s8 li i{font-style:normal;color:var(--accent);font-weight:900;font-size:26px;min-width:38px}
+
+/* s9 o que muda */
+.s9 h2{font-size:70px;margin-top:34px}
+.s9 .antes{flex:1;margin-top:52px;display:flex;flex-direction:column;justify-content:center;gap:30px}
+.s9 .par{display:flex;gap:26px;align-items:flex-start}
+.s9 .par b{
+  font-size:21px;font-weight:800;letter-spacing:.16em;min-width:130px;padding-top:8px;
+  text-transform:uppercase;opacity:.5
+}
+.s9 .par span{font-size:33px;font-weight:600;line-height:1.3;flex:1}
+.s9 .par.novo span{color:var(--accent);font-weight:900}
+.s9 .fecho{font-size:29px;line-height:1.4;color:var(--dim-on-light);border-top:2px solid rgba(11,11,12,.18);padding-top:32px}
+
+/* ---------- s10 CTA ---------- */
+.s10 h2{font-size:82px;margin-top:38px}
+.s10 .sub{margin-top:38px;font-size:32px;max-width:780px}
+.s10 .lista{flex:1;margin-top:46px;display:flex;flex-direction:column;justify-content:center}
+.s10 .lista div{font-size:34px;font-weight:900;letter-spacing:-.02em;padding:24px 0;border-top:2px solid rgba(11,11,12,.2)}
+.s10 .lista div:last-child{border-bottom:2px solid rgba(11,11,12,.2)}
+.s10 .cta{
+  margin-top:42px;margin-bottom:40px;background:#0B0B0C;color:var(--accent);
+  border-radius:22px;padding:38px 44px;font-size:42px;font-weight:900;letter-spacing:-.02em
+}
+.s10 .cta small{display:block;font-size:25px;font-weight:500;letter-spacing:0;color:rgba(242,239,233,.6);margin-top:12px}
+</style></head><body>
+
+<!-- 01 capa -->
+<div class="slide s1" id="s1">
+  <div class="kicker">O processo</div>
+  <div class="spacer" style="flex:.22"></div>
+  <h1><span class="ln">Uma marca,</span><span class="ln">8 anúncios,</span><span class="ln">zero designer.</span></h1>
+  <div class="sub">Montei tudo numa conversa. O que interessa não é o resultado — é a ordem das etapas.</div>
+  <div class="strip">
+    <img src="../../marca-seiva/marca-02-produto.png" alt="">
+    <img src="../../marca-seiva/ad-4x5-01-curiosidade.png" alt="">
+    <img src="../../marca-seiva/ad-4x5-03-oferta.png" alt="">
+  </div>
+  <div class="swipe">ARRASTA →</div><div class="num">01</div>
+</div>
+
+<!-- 02 o erro -->
+<div class="slide s2" id="s2">
+  <div class="kicker">Comece pelo erro</div>
+  <h2><span class="ln">Pedi o anúncio pronto.</span><span class="ln">Ela errou o português.</span></h2>
+  <div class="zoom">
+    <img src="criativos/c3-v1.jpg" alt="">
+    <div class="selo">SAÍDA REAL</div>
+  </div>
+  <div class="diag">
+    <p>Cedilha fantasma no <b>S</b> de SEM. Acento sumido em PROTEÍNA. Num criativo que ia rodar com verba em cima.</p>
+    <p>O modelo não errou desenho. Errou <b>texto</b> — e texto é a única parte do anúncio que não pode ter chute.</p>
+  </div>
+  <div class="num">02</div>
+</div>
+
+<!-- 03 a regra -->
+<div class="slide s3 acc" id="s3">
+  <div class="kicker">A regra que resolve</div>
+  <h1><span class="ln">A IA faz</span><span class="ln">a foto.</span><span class="ln">O código faz</span><span class="ln">o texto.</span></h1>
+  <div class="barra">
+    <div>Gera a imagem limpa, sem uma palavra dentro</div>
+    <div>Aplica a tipografia por cima, depois</div>
+  </div>
+  <div class="sub">Foi assim que o Ş sumiu — e que a headline virou uma linha editável em vez de uma aposta.</div>
+  <div class="num">03</div>
+</div>
+
+<!-- 04 etapa 1 -->
+<div class="slide s4 et light" id="s4">
+  <div class="kicker">Etapa 1</div>
+  <h2><span class="ln">A marca vem antes</span><span class="ln">da primeira imagem.</span></h2>
+  <div class="sub">Definir isso leva dez minutos e decide todo o resto. Pular essa etapa é o que faz o criativo sair bonito e genérico.</div>
+  <div class="grade">
+    <div class="row"><i>Quem é o inimigo</i><span>a confusão do rótulo</span></div>
+    <div class="row"><i>O que a marca diz</i><span>seis ingredientes, todos legíveis</span></div>
+    <div class="row"><i>O que ela nunca diz</i><span>“resultado em 7 dias”</span></div>
+    <div class="row"><i>Só então: a cor</i><span>verde, osso, âmbar</span></div>
+  </div>
+  <div class="num">04</div>
+</div>
+
+<!-- 05 etapa 2 -->
+<div class="slide s5 et" id="s5">
+  <div class="kicker">Etapa 2</div>
+  <h2><span class="ln">Todas as fotos</span><span class="ln">na mesma leva.</span></h2>
+  <div class="fotos">
+    <img src="seiva/hero.jpg" alt=""><img src="seiva/studio.jpg" alt="">
+    <img src="seiva/macro.jpg" alt=""><img src="seiva/flat.jpg" alt="">
+  </div>
+  <div class="nota">Mesma descrição de embalagem nas quatro cenas. É isso que faz o frasco ser o mesmo frasco — gerar uma de cada vez devolve quatro produtos diferentes.</div>
+  <div class="num">05</div>
+</div>
+
+<!-- 06 etapa 3 -->
+<div class="slide s6 et" id="s6">
+  <div class="kicker">Etapa 3</div>
+  <h2><span class="ln">A mesma foto vira</span><span class="ln">três anúncios.</span></h2>
+  <div class="ads">
+    <img src="../../marca-seiva/ad-4x5-01-curiosidade.png" alt="">
+    <img src="../../marca-seiva/ad-4x5-02-ingrediente.png" alt="">
+    <img src="../../marca-seiva/ad-4x5-03-oferta.png" alt="">
+  </div>
+  <div class="nota">Curiosidade, ingrediente e oferta. Trocar a headline é trocar uma linha de texto — não é gerar imagem nova nem abrir chamado com designer.</div>
+  <div class="num">06</div>
+</div>
+
+<!-- 07 etapa 4 -->
+<div class="slide s7 et light" id="s7">
+  <div class="kicker">Etapa 4</div>
+  <h2><span class="ln">Um arquivo,</span><span class="ln">três formatos.</span></h2>
+  <div class="fmt">
+    <div class="cel r45"><img src="../../marca-seiva/ad-4x5-03-oferta.png" alt=""><span>4:5</span></div>
+    <div class="cel r11"><img src="../../marca-seiva/ad-1x1-oferta.png" alt=""><span>1:1</span></div>
+    <div class="cel r916"><img src="../../marca-seiva/story-9x16-02-oferta.png" alt=""><span>9:16</span></div>
+  </div>
+  <div class="nota">Se você só sobe 4:5, o Meta recorta sozinho pra preencher Stories e Reels — e corta exatamente onde está o preço.</div>
+  <div class="num">07</div>
+</div>
+
+<!-- 08 etapa 5 -->
+<div class="slide s8 et" id="s8">
+  <div class="kicker">Etapa 5</div>
+  <h2><span class="ln">O robô confere</span><span class="ln">antes de você.</span></h2>
+  <ul>
+    <li><i>✕</i><span>fonte da marca caiu em fallback</span></li>
+    <li><i>✕</i><span>alguma foto não carregou</span></li>
+    <li><i>✕</i><span>peça saiu fora da medida declarada</span></li>
+    <li><i>✕</i><span>título quebrou linha fora do lugar</span></li>
+    <li><i>✕</i><span>texto vazou da arte</span></li>
+  </ul>
+  <div class="num">08</div>
+</div>
+
+<!-- 09 o que muda -->
+<div class="slide s9 light" id="s9">
+  <div class="kicker">Pra quem tem o produto</div>
+  <h2><span class="ln">O que isso muda</span><span class="ln">na sua operação.</span></h2>
+  <div class="antes">
+    <div class="par"><b>Antes</b><span>testar 5 headlines = 5 jobs de design e uma semana</span></div>
+    <div class="par novo"><b>Agora</b><span>testar 5 headlines = 5 linhas de texto e um comando</span></div>
+  </div>
+  <div class="fecho">O gargalo do criativo nunca foi desenhar. Era a fila. Quando a fila some, quem tem mais hipótese boa ganha.</div>
+  <div class="num">09</div>
+</div>
+
+<!-- 10 CTA -->
+<div class="slide s10 acc" id="s10">
+  <div class="kicker">Recapitulando</div>
+  <h2><span class="ln">Cinco etapas.</span></h2>
+  <div class="lista">
+    <div>1 · Marca antes da arte</div>
+    <div>2 · Fotos numa leva só</div>
+    <div>3 · Texto por cima, nunca dentro</div>
+    <div>4 · Três formatos de saída</div>
+    <div>5 · Validação automática</div>
+  </div>
+  <div class="cta">Comenta PROCESSO
+    <small>que eu mando o passo a passo com os prompts de cada etapa.</small>
+  </div>
+  <div class="num">10</div>
+</div>
+
+</body></html>

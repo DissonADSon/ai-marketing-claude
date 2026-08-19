@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@import url("inter.css");
+
+:root{
+  --ink:#0B0B0C; --paper:#F2EFE9; --accent:#FF3B2F;
+  --dim-on-dark:rgba(242,239,233,.52);
+  --dim-on-light:rgba(11,11,12,.55);
+  --pad:92px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+.slide{
+  width:1080px;height:1350px;position:relative;overflow:hidden;
+  padding:var(--pad);display:flex;flex-direction:column;
+  background:var(--ink);color:var(--paper);
+}
+.slide.light{background:var(--paper);color:var(--ink)}
+.slide.pure{background:#000}
+.slide.acc{background:var(--accent);color:#0B0B0C}
+
+/* grain */
+.slide::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.055;
+  background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  background-size:5px 5px;
+}
+.slide.light::after,.slide.acc::after{
+  background-image:radial-gradient(circle at 1px 1px, #000 1px, transparent 0);opacity:.05
+}
+
+.kicker{
+  font-size:23px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:18px;
+}
+.slide.acc .kicker{color:#0B0B0C}
+.kicker::after{content:'';flex:1;height:2px;background:currentColor;opacity:.35}
+
+.ln{display:block}
+h1{font-weight:900;letter-spacing:-.035em;line-height:.99;text-transform:uppercase}
+h2{font-weight:900;letter-spacing:-.03em;line-height:1.02}
+.body{font-weight:400;line-height:1.42;color:var(--dim-on-dark)}
+.slide.light .body,.slide.acc .body{color:var(--dim-on-light)}
+.acct{color:var(--accent)}
+.slide.acc .acct{color:#fff}
+.spacer{flex:1}
+
+.num{
+  position:absolute;right:var(--pad);bottom:56px;
+  font-size:20px;font-weight:800;letter-spacing:.16em;opacity:.35
+}
+.swipe{
+  position:absolute;left:var(--pad);bottom:56px;
+  font-size:20px;font-weight:800;letter-spacing:.16em;opacity:.45
+}
+
+/* ---------- face glyph ---------- */
+.face{stroke-linecap:round}
+.face .raw{stroke-dasharray:7 11;opacity:.6}
+
+/* ---------- s1 ---------- */
+.s1 h1{font-size:104px}
+.s1 .sub{margin-top:44px;font-size:31px;line-height:1.35;color:var(--dim-on-dark);max-width:640px}
+.s1 .art{position:absolute;right:64px;bottom:132px}
+
+/* ---------- s2 ---------- */
+.s2 h2{font-size:76px;margin-top:38px}
+.s2 .chips{display:grid;grid-template-columns:repeat(2,max-content);gap:14px;margin-top:44px}
+.s2 .chip{border:2px solid rgba(242,239,233,.22);border-radius:100px;padding:14px 26px;font-size:26px;font-weight:500}
+.steps{display:flex;gap:22px;align-items:stretch;flex:1;margin-top:52px}
+.s2 .step{aspect-ratio:auto;flex:1}
+.step{flex:1;border:2px solid rgba(242,239,233,.18);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative}
+.step span{position:absolute;bottom:16px;font-size:18px;font-weight:700;letter-spacing:.12em;opacity:.5}
+.arrowmid{font-size:34px;opacity:.4;font-weight:300}
+.s2 .punch{display:flex;gap:40px;margin-top:52px}
+.s2 .punch b{font-size:38px;font-weight:900;letter-spacing:-.02em}
+
+/* ---------- s3 ---------- */
+.s3 h2{font-size:82px;margin-top:38px}
+.s3 h2 em{font-style:normal;color:var(--accent)}
+.s3 ul{list-style:none;flex:1;margin-top:56px;display:flex;flex-direction:column;gap:0}
+.s3 li{font-size:37px;font-weight:500;flex:1;border-top:2px solid rgba(242,239,233,.16);display:flex;gap:26px;align-items:center}
+.s3 li:last-child{border-bottom:2px solid rgba(242,239,233,.16)}
+.s3 li i{font-style:normal;color:var(--accent);font-weight:900}
+
+/* ---------- s4 ---------- */
+.s4 .rows{flex:1;margin-top:60px;display:flex;flex-direction:column;justify-content:space-evenly;gap:0}
+.s4 .row{display:flex;gap:36px;align-items:flex-start}
+.s4 .n{font-size:104px;font-weight:900;line-height:.8;letter-spacing:-.05em;color:var(--accent);min-width:150px}
+.s4 .t{font-size:44px;font-weight:900;letter-spacing:-.02em;line-height:1.05}
+.s4 .d{font-size:28px;margin-top:12px;color:var(--dim-on-dark);line-height:1.35}
+.s4 h2{font-size:64px;margin-top:34px;max-width:800px}
+
+/* ---------- s5 ---------- */
+.s5 h2{font-size:80px;margin-top:38px}
+.s5 .body{font-size:33px;margin-top:38px;max-width:830px}
+.s5 .art{flex:1;display:flex;align-items:center;justify-content:center}
+.s5 .pull{margin-top:0;border-left:10px solid var(--accent);padding:12px 0 12px 34px;font-size:52px;font-weight:900;letter-spacing:-.025em;line-height:1.06}
+
+/* ---------- s6 ---------- */
+.s6 h2{font-size:70px;margin-top:30px}
+.s6 .body{font-size:29px;margin-top:30px;max-width:800px}
+.s6 .grid{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.s6 .cell{aspect-ratio:1.14;border:2px solid rgba(242,239,233,.14);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.s6 .cell.odd{border-color:var(--accent);background:rgba(255,59,47,.09)}
+.s6 .tag{margin-top:30px;font-size:29px;font-weight:800;letter-spacing:.02em}
+
+/* ---------- s7 ---------- */
+.s7{justify-content:center}
+.s7 h1{font-size:160px;line-height:.95}
+.s7 .body{font-size:34px;margin-top:52px;max-width:800px;line-height:1.4}
+.s7 .rule{width:150px;height:8px;background:var(--accent);margin-bottom:52px}
+.s7 .kill{margin-top:44px;font-size:34px;font-weight:900;letter-spacing:-.015em;line-height:1.25}
+
+/* ---------- s8 ---------- */
+.s8 h2{font-size:70px;margin-top:34px;max-width:860px}
+.s8 .funnel{flex:1;margin-top:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.s8 .fs{height:88px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.s8 .f1{width:100%;background:rgba(255,59,47,.14);border:2px solid rgba(255,59,47,.4);color:var(--paper)}
+.s8 .f2{width:74%;background:rgba(255,59,47,.3);border:2px solid rgba(255,59,47,.6);color:var(--paper)}
+.s8 .f3{width:48%;background:var(--accent);color:#0B0B0C}
+.s8 .tags{margin-top:46px;display:flex;gap:12px}
+.s8 .tg{flex:1;border:2px solid rgba(242,239,233,.2);border-radius:12px;padding:22px 10px;text-align:center;font-size:24px;font-weight:800;letter-spacing:.04em}
+.s8 .close{margin-top:34px;font-size:44px;font-weight:900;letter-spacing:-.025em;line-height:1.1}
+
+/* ---------- s9 ---------- */
+.s9{justify-content:center}
+.s9 .small{font-size:38px;font-weight:500;line-height:1.34;color:var(--dim-on-light);max-width:780px}
+.s9 h2{font-size:96px;margin-top:70px;letter-spacing:-.04em}
+.s9 h2 em{font-style:normal;color:var(--accent)}
+
+/* ---------- s10 ---------- */
+.s10 h2{font-size:74px;margin-top:36px;line-height:1.02}
+.s10 .boxes{flex:1;margin-top:52px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.s10 .bx{border:4px solid #0B0B0C;border-radius:18px;padding:38px 40px;font-size:60px;font-weight:900;letter-spacing:-.03em;display:flex;justify-content:space-between;align-items:center}
+.s10 .bx b{font-size:34px;opacity:.62}
+.s10 .cta{margin-top:52px;font-size:32px;font-weight:500;line-height:1.4}
+.s10 .cta strong{font-weight:900}
+
+/* ajustes deste deck */
+.s2 h2{font-size:74px;margin-top:34px}
+.s3 h2{font-size:74px;margin-top:34px}
+.s6 h2{font-size:74px;margin-top:34px}
+.s8 h2{font-size:64px;margin-top:34px}
+.mono{font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-size:26px}
+.bigstat{font-size:150px;font-weight:900;letter-spacing:-.05em;line-height:.85;color:var(--accent)}
+.emq{display:flex;gap:14px;margin-top:auto}
+.emq div{flex:1;height:86px;border-radius:10px;border:2px solid rgba(242,239,233,.2)}
+.emq div.on{background:var(--accent);border-color:var(--accent)}
+.flow{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0}
+.flow .row{display:flex;align-items:center;gap:22px;padding:26px 0;border-top:2px solid rgba(242,239,233,.16);font-size:33px;font-weight:500}
+.flow .row:last-child{border-bottom:2px solid rgba(242,239,233,.16)}
+.flow .row i{font-style:normal;color:var(--accent);font-weight:900;min-width:44px}
+.flow .row.dead{color:rgba(242,239,233,.4);text-decoration:line-through}
+</style></head><body>
+<div class="slide s1" id="s1">
+  <div class="kicker">Rastreamento</div>
+  <div class="spacer" style="flex:.2"></div>
+  <h1><span class="ln">Seu pixel</span><span class="ln">está mentindo</span><span class="ln">pra você.</span></h1>
+  <div class="sub">e o pior: o relatório continua bonito.</div>
+  <div class="swipe">ARRASTA →</div><div class="num">01</div>
+</div>
+
+<div class="slide s2" id="s2">
+  <div class="kicker">O que acontece de verdade</div>
+  <h2><span class="ln">O evento sai do</span><span class="ln">navegador. E o</span><span class="ln">navegador bloqueia.</span></h2>
+  <div class="flow">
+    <div class="row"><i>→</i><span>usuário compra</span></div>
+    <div class="row dead"><i>✕</i><span>bloqueador de anúncio derruba o script</span></div>
+    <div class="row dead"><i>✕</i><span>Safari/ITP corta o cookie</span></div>
+    <div class="row dead"><i>✕</i><span>banner de consentimento nega</span></div>
+    <div class="row"><i>→</i><span>a plataforma nunca soube da venda</span></div>
+  </div>
+  <div class="num">02</div>
+</div>
+
+<div class="slide s3" id="s3">
+  <div class="kicker">O sintoma que você já viu</div>
+  <h2><span class="ln">O Meta reporta</span><span class="ln">menos venda do que</span><span class="ln">o seu caixa.</span></h2>
+  <div class="body" style="font-size:32px;margin-top:38px;max-width:820px">E aí vem a parte cara: você olha o painel, acha que o criativo está ruim, e desliga uma campanha que estava vendendo.</div>
+  <div class="spacer"></div>
+  <div style="font-size:44px;font-weight:900;letter-spacing:-.025em;line-height:1.1">Você não tem um problema<br>de criativo.<br><span class="acct">Tem um problema de dado.</span></div>
+  <div class="num">03</div>
+</div>
+
+<div class="slide s4" id="s4">
+  <div class="kicker">Por que isso encarece</div>
+  <h2 style="font-size:64px;margin-top:34px"><span class="ln">O algoritmo aprende</span><span class="ln">com o que chega.</span></h2>
+  <div class="rows" style="flex:1;margin-top:56px;display:flex;flex-direction:column;justify-content:space-evenly">
+    <div class="row" style="display:flex;gap:36px;align-items:flex-start"><div class="n" style="font-size:96px;font-weight:900;line-height:.8;letter-spacing:-.05em;color:var(--accent);min-width:140px">01</div><div><div style="font-size:42px;font-weight:900;letter-spacing:-.02em">Menos evento entregue</div><div class="body" style="font-size:27px;margin-top:10px">a otimização treina em cima de uma amostra menor</div></div></div>
+    <div class="row" style="display:flex;gap:36px;align-items:flex-start"><div class="n" style="font-size:96px;font-weight:900;line-height:.8;letter-spacing:-.05em;color:var(--accent);min-width:140px">02</div><div><div style="font-size:42px;font-weight:900;letter-spacing:-.02em">Público pior</div><div class="body" style="font-size:27px;margin-top:10px">quem converteu não volta pro aprendizado</div></div></div>
+    <div class="row" style="display:flex;gap:36px;align-items:flex-start"><div class="n" style="font-size:96px;font-weight:900;line-height:.8;letter-spacing:-.05em;color:var(--accent);min-width:140px">03</div><div><div style="font-size:42px;font-weight:900;letter-spacing:-.02em">CPA sobe</div><div class="body" style="font-size:27px;margin-top:10px">e ninguém liga o efeito à causa</div></div></div>
+  </div>
+  <div class="num">04</div>
+</div>
+
+<div class="slide s5 light" id="s5">
+  <div class="kicker">A nota que quase ninguém abre</div>
+  <h2 style="font-size:76px;margin-top:34px"><span class="ln">Event Match</span><span class="ln">Quality</span></h2>
+  <div class="body" style="font-size:32px;margin-top:34px;max-width:830px">O Meta te dá uma nota de 1 a 10 por evento, dizendo o quanto ele conseguiu casar o seu dado com uma pessoa real. Está lá no Gerenciador de Eventos.</div>
+  <div class="spacer"></div>
+  <div style="border-left:10px solid var(--accent);padding:12px 0 12px 34px;font-size:46px;font-weight:900;letter-spacing:-.025em;line-height:1.06">Se você nunca olhou<br>essa nota, ela<br>provavelmente está baixa.</div>
+  <div class="num" style="opacity:.4">05</div>
+</div>
+
+<div class="slide s6" id="s6">
+  <div class="kicker">A correção</div>
+  <h2><span class="ln">Tire o evento</span><span class="ln">do navegador.</span></h2>
+  <div class="body" style="font-size:31px;margin-top:32px;max-width:820px">Server-side: o evento sai do <strong>seu</strong> servidor direto pra API da plataforma. Bloqueador de anúncio não alcança servidor.</div>
+  <div class="flow" style="flex:1">
+    <div class="row"><i>1</i><span>GTM Web coleta</span></div>
+    <div class="row"><i>2</i><span>GTM Server recebe em domínio próprio</span></div>
+    <div class="row"><i>3</i><span>Conversions API entrega ao Meta</span></div>
+  </div>
+  <div class="num">06</div>
+</div>
+
+<div class="slide s7 pure" id="s7">
+  <div class="rule"></div>
+  <h1 style="font-size:112px;line-height:.98"><span class="ln">Só que agora</span><span class="ln">você conta</span><span class="ln">duas vezes.</span></h1>
+  <div class="body" style="font-size:32px;margin-top:44px;max-width:820px">Pixel e CAPI mandam o mesmo evento. Sem tratar isso, a mesma venda entra duplicada e o seu ROAS vira ficção — pra cima.</div>
+  <div style="margin-top:40px;font-size:34px;font-weight:900;line-height:1.3">A trava chama <span class="acct">deduplicação</span>:<br><span class="mono">event_id</span> igual nos dois lados.</div>
+  <div class="num">07</div>
+</div>
+
+<div class="slide s8" id="s8">
+  <div class="kicker">O que levanta a nota</div>
+  <h2><span class="ln">Advanced Matching.</span></h2>
+  <div class="body" style="font-size:31px;margin-top:32px;max-width:820px">Quanto mais sinal identificável você manda junto do evento, maior a chance de casar com a pessoa certa. Tudo hasheado, nada em texto puro.</div>
+  <div class="flow" style="flex:1">
+    <div class="row"><i>+</i><span>e-mail e telefone (SHA-256)</span></div>
+    <div class="row"><i>+</i><span>cookies first-party <span class="mono">_fbp</span> / <span class="mono">_fbc</span></span></div>
+    <div class="row"><i>+</i><span>IP e user agent do servidor</span></div>
+    <div class="row"><i>+</i><span>captura progressiva no formulário</span></div>
+  </div>
+  <div class="num">08</div>
+</div>
+
+<div class="slide s9 light" id="s9">
+  <div class="small" style="font-size:36px;font-weight:500;line-height:1.34;color:var(--dim-on-light);max-width:800px">Nada disso é sobre gastar mais.<br>É sobre a plataforma enxergar o que já está acontecendo.</div>
+  <h2 style="font-size:82px;margin-top:64px;letter-spacing:-.04em"><span class="ln">Você já vendeu.</span><span class="ln">Só não</span><span class="ln"><span class="acct">contou direito.</span></span></h2>
+  <div class="num" style="opacity:.4">09</div>
+</div>
+
+<div class="slide s10 acc" id="s10">
+  <div class="kicker">Sua vez</div>
+  <h2 style="font-size:66px;margin-top:34px;line-height:1.04"><span class="ln">Quer saber quantos</span><span class="ln">eventos o seu site</span><span class="ln">está perdendo?</span></h2>
+  <div class="boxes" style="flex:1;margin-top:48px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+    <div class="bx" style="border:4px solid #0B0B0C;border-radius:18px;padding:36px 40px;font-size:52px;font-weight:900;letter-spacing:-.03em;display:flex;justify-content:space-between;align-items:center">COMENTA <b style="font-size:34px;opacity:.62">"AUDITORIA"</b></div>
+  </div>
+  <div class="cta" style="margin-top:52px;font-size:31px;font-weight:500;line-height:1.4"><strong style="font-weight:900">Salva esse post</strong><br>antes da próxima vez que<br>alguém culpar o criativo.</div>
+  <div class="num" style="opacity:.5">10</div>
+</div>
+</body></html>

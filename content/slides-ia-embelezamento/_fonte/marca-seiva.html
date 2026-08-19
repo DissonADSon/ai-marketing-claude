@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@import url("inter.css");
+@import url("fraunces.css");
+
+:root{
+  --verde:#14352A;
+  --verde-2:#25553F;
+  --osso:#F0E9DC;
+  --ambar:#C97B2C;
+  --tinta:#0B1611;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+.art{position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--verde);color:var(--osso)}
+.a45{width:1080px;height:1350px;padding:88px}
+.a11{width:1080px;height:1080px;padding:78px}
+.a916{width:1080px;height:1920px;padding:96px}
+.art.osso{background:var(--osso);color:var(--tinta)}
+
+/* ---------- identidade da marca ---------- */
+.wm{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:.34em;text-transform:uppercase;line-height:1}
+.wm .i{font-style:normal}
+.desc{font-size:19px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;opacity:.62}
+
+/* marca d'água / assinatura no canto */
+.sig{position:absolute;left:88px;top:88px;display:flex;align-items:center;gap:16px}
+.sig .wm{font-size:29px}
+.a916 .sig{left:96px;top:96px}
+.a11 .sig{left:78px;top:78px}
+.mark{width:34px;height:34px;flex:none}
+.a916 .mark{width:40px;height:40px}
+
+h1{font-family:'Fraunces',Georgia,serif;font-weight:400;line-height:1.02;letter-spacing:-.012em}
+h1 b{font-weight:900}
+.ln{display:block}
+.lede{font-size:30px;line-height:1.42;opacity:.74;font-weight:400}
+.amb{color:var(--ambar)}
+
+.btn{
+  display:inline-block;background:var(--ambar);color:var(--tinta);
+  border-radius:100px;padding:22px 44px;font-size:26px;font-weight:800;letter-spacing:.02em
+}
+.btn.osso{background:var(--osso)}
+
+.legal{font-size:17px;line-height:1.4;opacity:.5;font-weight:400}
+
+/* ---------- s1 board de identidade ---------- */
+.s1{justify-content:space-between}
+.s1 .lockup{text-align:center;margin-top:96px}
+.s1 .lockup svg{margin:0 auto 34px;display:block}
+.s1 .lockup .wm{font-size:96px}
+.s1 .lockup .desc{margin-top:26px}
+.s1 .pal{display:flex;gap:0;margin-top:12px}
+.s1 .sw{flex:1;aspect-ratio:1/1.5;display:flex;align-items:flex-end;padding:20px 18px;font-size:16px;font-weight:700;letter-spacing:.06em}
+.s1 .spec{display:flex;gap:40px;align-items:flex-end;border-top:1px solid rgba(11,22,17,.2);padding-top:34px}
+.s1 .spec .col b{display:block;font-size:15px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-bottom:14px}
+.s1 .spec .aa1{font-family:'Fraunces',Georgia,serif;font-size:74px;line-height:1}
+.s1 .spec .aa2{font-family:'Inter';font-weight:800;font-size:64px;line-height:1;letter-spacing:-.03em}
+.s1 .spec .nm{font-size:20px;opacity:.6;margin-top:10px}
+.s1 .pos{font-family:'Fraunces',Georgia,serif;font-size:38px;line-height:1.28;border-top:1px solid rgba(11,22,17,.2);padding-top:34px}
+
+/* ---------- s2 produto ---------- */
+.s2{padding:0;justify-content:flex-end}
+.s2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 34%}
+.s2 .band{position:relative;background:var(--osso);color:var(--tinta);padding:56px 88px 60px}
+.s2 .band .nome{font-family:'Fraunces',Georgia,serif;font-size:54px;line-height:1.06}
+.s2 .band .spec{margin-top:22px;display:flex;gap:52px;font-size:22px;font-weight:600;letter-spacing:.04em;opacity:.66}
+
+/* ---------- anúncios: bloco de imagem + bloco de texto ---------- */
+.split{padding:0}
+.split .pic{position:relative;overflow:hidden;flex:none}
+.pic img{width:100%;height:100%;object-fit:cover;display:block}
+.split .txt{flex:1;padding:64px 88px;display:flex;flex-direction:column;justify-content:center}
+.a916 .split .txt{padding:78px 96px}
+
+.adA .pic{height:560px}
+.adA h1{font-size:76px}
+.adA .lede{margin-top:30px;font-size:31px}
+.adA .btn{margin-top:44px;align-self:flex-start}
+
+.adB{padding:0}
+.adB .pic{height:700px}
+.adB .sig{color:var(--tinta)}
+.adB h1{font-size:64px}
+.adB ul{list-style:none;margin-top:34px;display:flex;flex-direction:column;gap:0}
+.adB li{font-size:27px;font-weight:500;padding:22px 0;border-top:1px solid rgba(240,233,220,.22);display:flex;gap:22px;align-items:baseline}
+.adB li:last-child{border-bottom:1px solid rgba(240,233,220,.22)}
+.adB li i{font-style:normal;color:var(--ambar);font-weight:900;font-size:22px;min-width:34px}
+
+.adC{padding:0;flex-direction:row}
+.adC .pic{width:520px;height:100%}
+.adC .pic img{object-position:center 58%}
+.adC .txt{padding:76px 62px;display:flex;flex-direction:column;justify-content:center}
+.adC .off{font-family:'Fraunces',Georgia,serif;font-size:120px;line-height:.94;color:var(--ambar)}
+.adC h1{font-size:46px;margin-top:24px}
+.adC .lede{margin-top:22px;font-size:24px}
+.adC .btn{margin-top:38px;align-self:flex-start;font-size:23px;padding:19px 36px}
+.adC .legal{margin-top:26px}
+
+/* ---------- 1:1 ---------- */
+.q1{padding:0;flex-direction:row}
+.q1 .pic{width:470px;height:100%}
+.q1 .pic img{object-position:center 62%}
+.q1 .txt{padding:76px 58px;display:flex;flex-direction:column;justify-content:center}
+.q1 .off{font-family:'Fraunces',Georgia,serif;font-size:104px;line-height:.94;color:var(--ambar)}
+.q1 h1{font-size:42px;margin-top:20px}
+.q1 .btn{margin-top:34px;align-self:flex-start;font-size:22px;padding:18px 34px}
+
+/* ---------- stories 9:16 ---------- */
+.st{padding:0}
+.st .pic{flex:1;min-height:0}
+.st .txt{flex:none;padding:78px 96px 130px}
+.st h1{font-size:82px}
+.st .lede{margin-top:32px;font-size:33px}
+.st .btn{margin-top:48px;align-self:flex-start;font-size:29px;padding:26px 50px}
+.st .tapzone{position:absolute;left:0;right:0;bottom:44px;text-align:center;font-size:22px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.55}
+
+.stB{padding:0}
+.stB img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.stB .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,22,17,.96) 16%,rgba(11,22,17,.62) 34%,rgba(11,22,17,.05) 62%)}
+.stB .txt{position:relative;margin-top:auto;padding:0 96px 150px}
+.stB .off{font-family:'Fraunces',Georgia,serif;font-size:104px;line-height:.94;color:var(--ambar)}
+.stB h1{font-size:56px;margin-top:18px}
+.stB .lede{margin-top:26px;font-size:30px}
+.stB .btn{margin-top:44px;align-self:flex-start;font-size:29px;padding:26px 50px}
+</style></head><body>
+
+<!-- ========== 01 · board de identidade ========== -->
+<div class="art a45 osso s1" id="s1">
+  <div class="lockup">
+    <svg width="86" height="86" viewBox="0 0 100 100" fill="none">
+      <path d="M50 6C50 6 22 32 22 56a28 28 0 0 0 56 0C78 32 50 6 50 6Z" stroke="#14352A" stroke-width="3"/>
+      <path d="M50 88V34" stroke="#14352A" stroke-width="3" stroke-linecap="round"/>
+      <path d="M50 52c-9-3-15-10-17-19M50 66c9-3 15-10 17-19" stroke="#14352A" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="wm">Seiva</div>
+    <div class="desc">Cosmética botânica brasileira</div>
+  </div>
+
+  <div class="pal">
+    <div class="sw" style="background:#14352A;color:#F0E9DC">#14352A</div>
+    <div class="sw" style="background:#25553F;color:#F0E9DC">#25553F</div>
+    <div class="sw" style="background:#C97B2C;color:#0B1611">#C97B2C</div>
+    <div class="sw" style="background:#F0E9DC;color:#0B1611;box-shadow:inset 0 0 0 1px rgba(11,22,17,.18)">#F0E9DC</div>
+    <div class="sw" style="background:#0B1611;color:#F0E9DC">#0B1611</div>
+  </div>
+
+  <div class="spec">
+    <div class="col">
+      <b>Títulos</b>
+      <div class="aa1">Aa</div>
+      <div class="nm">Fraunces</div>
+    </div>
+    <div class="col">
+      <b>Texto e rótulo</b>
+      <div class="aa2">Aa</div>
+      <div class="nm">Inter</div>
+    </div>
+  </div>
+
+  <div class="pos">A fórmula tem seis ingredientes.<br>Você consegue ler todos.</div>
+</div>
+
+<!-- ========== 02 · produto ========== -->
+<div class="art a45 s2" id="s2">
+  <img src="seiva/studio.jpg" alt="">
+  <div class="sig" style="color:#F0E9DC">
+    <svg class="mark" viewBox="0 0 100 100" fill="none">
+      <path d="M50 6C50 6 22 32 22 56a28 28 0 0 0 56 0C78 32 50 6 50 6Z" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 88V34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="wm">Seiva</div>
+  </div>
+  <div class="band">
+    <div class="nome">Sérum de Cumaru<br>+ Vitamina C</div>
+    <div class="spec"><span>30 ML</span><span>6 INGREDIENTES</span><span>VEGANO</span></div>
+  </div>
+</div>
+
+<!-- ========== 03 · anúncio A · curiosidade ========== -->
+<div class="art a45 split adA" id="s3">
+  <div class="pic"><img src="seiva/macro.jpg" alt=""></div>
+  <div class="txt">
+    <h1><span class="ln">Sua pele não precisa</span><span class="ln">de <b>onze</b> ingredientes.</span></h1>
+    <div class="lede">A SEIVA tem seis. E você consegue ler todos sem pesquisar nenhum.</div>
+    <span class="btn">Ver a fórmula</span>
+  </div>
+  <div class="sig">
+    <svg class="mark" viewBox="0 0 100 100" fill="none">
+      <path d="M50 6C50 6 22 32 22 56a28 28 0 0 0 56 0C78 32 50 6 50 6Z" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 88V34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="wm">Seiva</div>
+  </div>
+</div>
+
+<!-- ========== 04 · anúncio B · prova / ingrediente ========== -->
+<div class="art a45 split adB" id="s4">
+  <div class="pic"><img src="seiva/flat.jpg" alt=""></div>
+  <div class="txt">
+    <h1><span class="ln">Cumaru: o ativo que</span><span class="ln">só o Brasil tem.</span></h1>
+    <ul>
+      <li><i>01</i><span>Cumaru amazônico — antioxidante e barreira</span></li>
+      <li><i>02</i><span>Vitamina C 15% estabilizada — uniformiza o tom</span></li>
+      <li><i>03</i><span>Sem álcool, sem essência, sem corante</span></li>
+    </ul>
+  </div>
+  <div class="sig">
+    <svg class="mark" viewBox="0 0 100 100" fill="none">
+      <path d="M50 6C50 6 22 32 22 56a28 28 0 0 0 56 0C78 32 50 6 50 6Z" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 88V34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="wm">Seiva</div>
+  </div>
+</div>
+
+<!-- ========== 05 · anúncio C · oferta 4:5 ========== -->
+<div class="art a45 adC" id="s5">
+  <div class="pic"><img src="seiva/hero.jpg" alt=""></div>
+  <div class="txt">
+    <div class="off">20%<br>OFF</div>
+    <h1><span class="ln">no primeiro</span><span class="ln">frasco.</span></h1>
+    <div class="lede">Sérum de Cumaru + Vitamina C, 30 ml. Frete grátis acima de R$ 149.</div>
+    <span class="btn">Comprar agora</span>
+    <div class="legal">Cupom PRIMEIRA20 · válido para a primeira compra · não acumulativo.</div>
+  </div>
+</div>
+
+<!-- ========== 06 · oferta 1:1 ========== -->
+<div class="art a11 q1" id="s6">
+  <div class="pic"><img src="seiva/studio.jpg" alt=""></div>
+  <div class="txt">
+    <div class="off">20%<br>OFF</div>
+    <h1><span class="ln">no primeiro frasco.</span></h1>
+    <span class="btn">Comprar agora</span>
+    <div class="legal" style="margin-top:24px">Cupom PRIMEIRA20 · primeira compra.</div>
+  </div>
+</div>
+
+<!-- ========== 07 · story A ========== -->
+<div class="art a916 split st" id="s7">
+  <div class="pic"><img src="seiva/macro.jpg" alt=""></div>
+  <div class="txt">
+    <h1><span class="ln">Seis</span><span class="ln">ingredientes.</span><span class="ln"><b>Zero</b> enigma.</span></h1>
+    <div class="lede">Cosmética botânica brasileira, com o rótulo que você lê inteiro.</div>
+    <span class="btn">Conhecer a SEIVA</span>
+  </div>
+  <div class="sig">
+    <svg class="mark" viewBox="0 0 100 100" fill="none">
+      <path d="M50 6C50 6 22 32 22 56a28 28 0 0 0 56 0C78 32 50 6 50 6Z" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 88V34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="wm">Seiva</div>
+  </div>
+  <div class="tapzone">Toca pra ver</div>
+</div>
+
+<!-- ========== 08 · story B · oferta ========== -->
+<div class="art a916 stB" id="s8">
+  <img class="bg" src="seiva/hero.jpg" alt="">
+  <div class="veil"></div>
+  <div class="sig">
+    <svg class="mark" viewBox="0 0 100 100" fill="none">
+      <path d="M50 6C50 6 22 32 22 56a28 28 0 0 0 56 0C78 32 50 6 50 6Z" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 88V34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="wm">Seiva</div>
+  </div>
+  <div class="txt">
+    <div class="off">20% OFF</div>
+    <h1><span class="ln">no primeiro frasco.</span></h1>
+    <div class="lede">Sérum de Cumaru + Vitamina C, 30 ml. Cupom PRIMEIRA20.</div>
+    <span class="btn">Comprar agora</span>
+  </div>
+  <div class="tapzone">Arrasta pra cima</div>
+</div>
+
+</body></html>

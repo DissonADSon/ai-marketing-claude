@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@import url("inter.css");
+
+:root{
+  --bg:#0A0A0C; --card:#141418; --linha:#26262E;
+  --tinta:#F2EFE9; --dim:rgba(242,239,233,.56); --dim2:rgba(242,239,233,.4);
+  --ac:#FF3B2F; --ok:#12B76A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+.s{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--bg);color:var(--tinta);
+   padding:64px;display:flex;flex-direction:column}
+
+/* cabeçalho comum dos passos */
+.top{display:flex;align-items:center;gap:18px}
+.badge{width:60px;height:60px;border-radius:16px;background:var(--ac);color:#0E0E11;
+       display:grid;place-items:center;font-size:32px;font-weight:900;flex:none}
+.badge.bo{background:var(--tinta);font-size:20px;letter-spacing:.1em;width:auto;padding:0 22px;border-radius:100px}
+.top h2{font-size:52px;font-weight:900;letter-spacing:-.035em;line-height:1.02;text-transform:uppercase}
+.caminho{margin-top:16px;font-size:24px;font-weight:600;color:var(--ac);letter-spacing:.01em}
+
+/* corpo: lista + mascote */
+.corpo{flex:1;min-height:0;margin-top:32px;display:flex;gap:26px;align-items:center}
+.lista{flex:1;min-width:0;background:var(--card);border:2px solid var(--linha);border-radius:24px;
+       padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+.li{display:flex;gap:18px;align-items:flex-start;font-size:31px;line-height:1.3;font-weight:500}
+.li i{font-style:normal;color:var(--ac);font-size:23px;font-weight:900;line-height:1.5;flex:none;width:26px}
+.li b{font-weight:800}
+.li.no i{color:var(--dim2)}
+.masc{width:346px;height:346px;flex:none;align-self:center;border-radius:24px;overflow:hidden;
+      border:2px solid var(--linha);background:#141418}
+.masc img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* faixa de dica */
+.dica{flex:none;margin-top:26px;background:var(--card);border:2px solid var(--linha);border-radius:20px;
+      padding:26px 30px;display:flex;gap:20px;align-items:center}
+.dica em{font-style:normal;font-size:28px;line-height:1;flex:none}
+.dica p{font-size:29px;line-height:1.34;color:var(--dim)}
+.dica p b{color:var(--tinta);font-weight:800}
+
+.rod{position:absolute;left:64px;right:64px;bottom:26px;display:flex;justify-content:space-between;
+     font-size:19px;font-weight:800;letter-spacing:.14em;color:var(--dim2)}
+
+/* ---------- capa ---------- */
+.capa{padding:64px}
+.capa .tit{font-size:96px;font-weight:900;letter-spacing:-.045em;line-height:.93;text-transform:uppercase}
+.capa .tit em{font-style:normal;color:var(--ac)}
+.capa .sub{margin-top:26px;font-size:29px;font-weight:600;color:var(--dim);letter-spacing:.01em;text-transform:uppercase}
+.capa .grade{flex:1;min-height:0;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;
+             grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.capa .cel{background:var(--card);border:2px solid var(--linha);border-radius:22px;padding:22px 24px;
+           display:flex;align-items:center;gap:18px}
+.capa .cel img{width:152px;height:152px;object-fit:cover;flex:none;display:block;
+               border-radius:16px;border:2px solid var(--linha)}
+.capa .cel div{min-width:0}
+.capa .cel span{display:block;margin-bottom:8px;font-size:20px;font-weight:900;letter-spacing:.12em;color:var(--ac)}
+.capa .cel small{display:block;margin-top:10px;font-size:21px;font-weight:500;color:var(--dim);line-height:1.28}
+.capa .cel p{font-size:31px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.capa .faixa{margin-top:22px;background:var(--ac);color:#0E0E11;border-radius:18px;padding:22px 28px;
+             font-size:27px;font-weight:900;letter-spacing:-.01em}
+
+/* ---------- bônus: 3 ângulos ---------- */
+.bo3{flex:1;min-height:0;margin-top:32px;display:flex;gap:20px}
+.bo3 .col{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+.bo3 .col img{width:100%;flex:1;min-height:0;object-fit:cover;border-radius:18px;
+              border:2px solid var(--linha);display:block}
+.bo3 .col span{font-size:23px;font-weight:900;letter-spacing:.08em;color:var(--ac);text-align:center}
+
+/* ---------- prova ---------- */
+.pv{flex:1;min-height:0;margin-top:32px;display:flex;gap:20px}
+.pv .cel{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pv .jan{flex:1;min-height:0;position:relative;overflow:hidden;border-radius:18px;border:3px solid}
+.pv .jan img{position:absolute;width:1400px;left:-842px;top:-72px;max-width:none}
+.pv .erro .jan{border-color:var(--ac)}
+.pv .certo .jan{border-color:var(--ok)}
+.pv .certo .jan img{top:-162px}
+.pv .tg{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:900;letter-spacing:.1em}
+.pv .erro .tg{color:var(--ac)} .pv .certo .tg{color:var(--ok)}
+.pv .tg i{font-style:normal;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+          font-size:19px;color:#0E0E11;flex:none}
+.pv .erro .tg i{background:var(--ac)} .pv .certo .tg i{background:var(--ok)}
+
+/* ---------- CTA ---------- */
+.cta .corpo{align-items:stretch}
+.cta .grande{flex:1;background:var(--ac);color:#0E0E11;border-radius:24px;padding:44px 40px;
+             display:flex;flex-direction:column;justify-content:center}
+.cta .grande b{font-size:82px;font-weight:900;letter-spacing:-.045em;line-height:.94;display:block}
+.cta .grande p{margin-top:22px;font-size:28px;font-weight:600;line-height:1.32;color:rgba(14,14,17,.72)}
+.cta .assin{margin-top:26px;display:flex;align-items:center;gap:20px;
+            background:var(--card);border:2px solid var(--linha);border-radius:20px;padding:24px 28px}
+.cta .assin .nome{font-size:30px;font-weight:900;letter-spacing:-.02em}
+.cta .assin .arr{font-size:23px;font-weight:600;color:var(--dim);margin-top:4px}
+.cta .assin .pill{margin-left:auto;background:var(--ac);color:#0E0E11;border-radius:100px;
+                  padding:14px 26px;font-size:21px;font-weight:900;letter-spacing:.1em}
+</style></head><body>
+
+<!-- 01 capa -->
+<div class="s capa" id="s1">
+  <div class="tit"><span>Crie seu criativo</span><br><em>do jeito certo</em></div>
+  <div class="sub">Um guia prático pra produzir anúncio com IA sem passar vergonha</div>
+  <div class="grade">
+    <div class="cel"><img src="mascote/m1.jpg" alt=""><div><span>PASSO 1</span><p>Comece pela marca</p><small>posicionamento antes de pixel</small></div></div>
+    <div class="cel"><img src="mascote/m2.jpg" alt=""><div><span>PASSO 2</span><p>Fotos numa leva só</p><small>produto idêntico em toda cena</small></div></div>
+    <div class="cel"><img src="mascote/m3.jpg" alt=""><div><span>PASSO 3</span><p>Foto sem uma palavra</p><small>a IA desenha letra, não escreve</small></div></div>
+    <div class="cel"><img src="mascote/m4.jpg" alt=""><div><span>PASSO 4</span><p>Texto entra depois</p><small>tipografia por cima, sempre</small></div></div>
+  </div>
+  <div class="faixa">+ 2 passos, 1 bônus e a prova de por que isso importa →</div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>ARRASTA →</span></div>
+</div>
+
+<!-- 02 passo 1 -->
+<div class="s" id="s2">
+  <div class="top"><div class="badge">1</div><h2>Comece pela marca</h2></div>
+  <div class="caminho">antes de abrir qualquer gerador de imagem</div>
+  <div class="corpo">
+    <div class="lista">
+      <div class="li"><i>›</i><span>Quem é o <b>inimigo</b> da marca</span></div>
+      <div class="li"><i>›</i><span>A frase que ela <b>repete</b></span></div>
+      <div class="li"><i>›</i><span>A frase que ela <b>nunca diz</b></span></div>
+      <div class="li"><i>›</i><span>Só então: paleta e tipografia</span></div>
+    </div>
+    <div class="masc"><img src="mascote/m1.jpg" alt=""></div>
+  </div>
+  <div class="dica"><em>💡</em><p>Pular isso é o que faz o criativo sair <b>bonito e genérico</b>. Dez minutos aqui decidem todo o resto.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>01 / 06</span></div>
+</div>
+
+<!-- 03 passo 2 -->
+<div class="s" id="s3">
+  <div class="top"><div class="badge">2</div><h2>Fotos numa leva só</h2></div>
+  <div class="caminho">todas as cenas no mesmo pedido</div>
+  <div class="corpo">
+    <div class="lista">
+      <div class="li"><i>›</i><span>Peça hero, estúdio, macro e ambiente <b>juntos</b></span></div>
+      <div class="li"><i>›</i><span>Repita a descrição do produto <b>palavra por palavra</b></span></div>
+      <div class="li"><i>›</i><span>Mude só a cena, nunca a embalagem</span></div>
+      <div class="li"><i>›</i><span>Guarde os originais <b>sem texto</b> — é o seu estoque</span></div>
+    </div>
+    <div class="masc"><img src="mascote/m2.jpg" alt=""></div>
+  </div>
+  <div class="dica"><em>💡</em><p>Gerar uma de cada vez devolve <b>quatro produtos diferentes</b> — e ninguém compra de uma marca que muda de rótulo.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>02 / 06</span></div>
+</div>
+
+<!-- 04 passo 3 -->
+<div class="s" id="s4">
+  <div class="top"><div class="badge">3</div><h2>Foto sem uma palavra</h2></div>
+  <div class="caminho">o pulo do gato — e onde quase todo mundo erra</div>
+  <div class="corpo">
+    <div class="lista">
+      <div class="li"><i>›</i><span>Escreva no prompt: <b>“no text anywhere in the image”</b></span></div>
+      <div class="li"><i>›</i><span>Peça <b>espaço negativo</b> onde o título vai entrar</span></div>
+      <div class="li"><i>›</i><span>Rótulo do produto pode. Headline, não.</span></div>
+      <div class="li"><i>›</i><span>Peça <b>duas versões</b> da mesma cena e escolha</span></div>
+    </div>
+    <div class="masc"><img src="mascote/m3.jpg" alt=""></div>
+  </div>
+  <div class="dica"><em>💡</em><p>Modelo de imagem <b>desenha</b> letra, não escreve. Acerta 9 em 10 — e não te avisa qual foi a décima.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>03 / 06</span></div>
+</div>
+
+<!-- 05 passo 4 -->
+<div class="s" id="s5">
+  <div class="top"><div class="badge">4</div><h2>Texto entra depois</h2></div>
+  <div class="caminho">por cima da foto, no editor ou em código</div>
+  <div class="corpo">
+    <div class="lista">
+      <div class="li"><i>›</i><span>Título, subtítulo, selo e botão</span></div>
+      <div class="li"><i>›</i><span>Sua fonte, seu acento — <b>sempre igual</b></span></div>
+      <div class="li"><i>›</i><span>Trocar headline vira <b>uma linha de texto</b></span></div>
+      <div class="li"><i>›</i><span>Preço, selo e letra miúda também entram aqui</span></div>
+    </div>
+    <div class="masc"><img src="mascote/m4.jpg" alt=""></div>
+  </div>
+  <div class="dica"><em>💡</em><p>É aqui que <b>5 variações de copy</b> param de ser 5 jobs de design e viram 5 minutos.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>04 / 06</span></div>
+</div>
+
+<!-- 06 passo 5 -->
+<div class="s" id="s6">
+  <div class="top"><div class="badge">5</div><h2>Exporte em 3 formatos</h2></div>
+  <div class="caminho">4:5 · 1:1 · 9:16 — do mesmo arquivo</div>
+  <div class="corpo">
+    <div class="lista">
+      <div class="li"><i>›</i><span><b>4:5</b> — feed do Instagram e Facebook</span></div>
+      <div class="li"><i>›</i><span><b>1:1</b> — quadrado, catálogo e parcerias</span></div>
+      <div class="li"><i>›</i><span><b>9:16</b> — Stories e Reels</span></div>
+      <div class="li"><i>›</i><span>Mesma arte, três cortes. <b>Não regere nada.</b></span></div>
+    </div>
+    <div class="masc"><img src="mascote/m5.jpg" alt=""></div>
+  </div>
+  <div class="dica"><em>💡</em><p>Se você só sobe 4:5, o Meta recorta sozinho pra preencher o resto — e corta <b>exatamente em cima do preço</b>.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>05 / 06</span></div>
+</div>
+
+<!-- 07 passo 6 -->
+<div class="s" id="s7">
+  <div class="top"><div class="badge">6</div><h2>Confira antes de subir</h2></div>
+  <div class="caminho">30 segundos que salvam a verba</div>
+  <div class="corpo">
+    <div class="lista">
+      <div class="li"><i>›</i><span>Acento e cedilha, letra por letra</span></div>
+      <div class="li"><i>›</i><span>Medida exata do formato</span></div>
+      <div class="li"><i>›</i><span>Título quebrando linha no lugar certo</span></div>
+      <div class="li"><i>›</i><span>Nenhuma imagem faltando</span></div>
+    </div>
+    <div class="masc"><img src="mascote/m6.jpg" alt=""></div>
+  </div>
+  <div class="dica"><em>💡</em><p>Erro de português em anúncio pago <b>não tem desfazer</b> — ele já rodou com verba em cima.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>06 / 06</span></div>
+</div>
+
+<!-- 08 bônus -->
+<div class="s" id="s8">
+  <div class="top"><div class="badge bo">BÔNUS</div><h2>Uma foto, três ângulos</h2></div>
+  <div class="caminho">o mesmo arquivo cobre o funil inteiro</div>
+  <div class="bo3">
+    <div class="col"><img src="../../marca-seiva/ad-4x5-01-curiosidade.png" alt=""><span>CURIOSIDADE</span></div>
+    <div class="col"><img src="../../marca-seiva/ad-4x5-02-ingrediente.png" alt=""><span>PROVA</span></div>
+    <div class="col"><img src="../../marca-seiva/ad-4x5-03-oferta.png" alt=""><span>OFERTA</span></div>
+  </div>
+  <div class="dica"><em>💡</em><p>Topo, meio e fundo com a <b>mesma foto</b>. O que muda é o texto — e texto é a parte barata.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>BÔNUS</span></div>
+</div>
+
+<!-- 09 prova -->
+<div class="s" id="s9">
+  <div class="top"><div class="badge bo" style="background:var(--ac);color:#0E0E11">PROVA</div><h2>Foi comigo</h2></div>
+  <div class="caminho">pedi imagem e texto no mesmo prompt</div>
+  <div class="pv">
+    <div class="cel erro">
+      <div class="tg"><i>✕</i>TUDO JUNTO</div>
+      <div class="jan"><img src="criativos/c3-v1.jpg" alt=""></div>
+    </div>
+    <div class="cel certo">
+      <div class="tg"><i>✓</i>SEPARADO</div>
+      <div class="jan"><img src="criativos/c3.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="dica"><em>💡</em><p>Cedilha embaixo do <b>S</b>, acento sumido. Nenhum log, nenhum erro — só descobre olhando peça por peça.</p></div>
+  <div class="rod"><span>@DISSONDOTRAFEGO</span><span>PROVA</span></div>
+</div>
+
+<!-- 10 CTA -->
+<div class="s cta" id="s10">
+  <div class="top"><div class="badge bo" style="background:var(--tinta);color:#0E0E11">SUA VEZ</div><h2>Leva o guia inteiro</h2></div>
+  <div class="corpo">
+    <div class="grande">
+      <b>Comenta<br>CRIATIVO</b>
+      <p>que eu mando na DM o passo a passo com os prompts prontos de cada etapa.</p>
+    </div>
+    <div class="masc"><img src="mascote/m8.jpg" alt=""></div>
+  </div>
+  <div class="assin">
+    <div>
+      <div class="nome">Anderson Simão</div>
+      <div class="arr">Tráfego pago · IA · Automação</div>
+    </div>
+    <div class="pill">@DISSONDOTRAFEGO</div>
+  </div>
+  <div class="rod"><span></span><span>SALVA PRA NÃO PERDER</span></div>
+</div>
+
+</body></html>
