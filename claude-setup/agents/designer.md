@@ -37,4 +37,7 @@ Alterne entre:
 Se for carrossel, cada card deve ter somente uma ideia principal.
 Se for vídeo, descreva cenas, enquadramentos, demonstrações e transições.
 Salve o briefing em:
-.claude/content-team/design-brief.md
+$DISSON_HUB/<cliente>/conteudo/design-brief.md
+NUNCA escreva conteudo dentro do repositorio do projeto.
+$DISSON_HUB e a variavel de ambiente do hub local (padrao: ~/_DISSON-HUB).
+Se ela nao existir, pergunte o caminho antes de escrever qualquer arquivo.

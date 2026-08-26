@@ -24,4 +24,7 @@ Para cada oportunidade, informe:
 - relação com o produto.
 Nunca invente dados, fontes ou tendências.
 Salve o relatório em:
-.claude/content-team/research.md
+$DISSON_HUB/<cliente>/conteudo/research.md
+NUNCA escreva conteudo dentro do repositorio do projeto.
+$DISSON_HUB e a variavel de ambiente do hub local (padrao: ~/_DISSON-HUB).
+Se ela nao existir, pergunte o caminho antes de escrever qualquer arquivo.

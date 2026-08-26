@@ -79,6 +79,29 @@ else
     echo -e "  ${VERDE}ok${NC} bloco adicionado"
 fi
 
+# --- Rede de seguranca: gitignore global contra vazamento de conteudo ---
+echo -e "\n${AZUL}Protecao contra commit de conteudo${NC}"
+if command -v git >/dev/null 2>&1; then
+    EXCLUDES="$(git config --global core.excludesFile 2>/dev/null || true)"
+    if [ -z "$EXCLUDES" ]; then
+        EXCLUDES="$HOME/.gitignore_global"
+        git config --global core.excludesFile "$EXCLUDES"
+        echo -e "  ${VERDE}ok${NC} core.excludesFile definido como $EXCLUDES"
+    fi
+    EXCLUDES="${EXCLUDES/#\~/$HOME}"
+    touch "$EXCLUDES"
+    for padrao in ".claude/content-team/" "_DISSON-HUB/"; do
+        if ! grep -qxF "$padrao" "$EXCLUDES" 2>/dev/null; then
+            echo "$padrao" >> "$EXCLUDES"
+            echo -e "  ${VERDE}ok${NC} ignorando $padrao em todos os repos"
+        else
+            echo -e "  ${VERDE}ok${NC} $padrao ja ignorado"
+        fi
+    done
+else
+    echo -e "  ${AMARELO}git ausente${NC} — protecao global nao aplicada"
+fi
+
 [ -n "${TEMP:-}" ] && rm -rf "$TEMP"
 
 cat <<'FIM'

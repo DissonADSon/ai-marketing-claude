@@ -10,4 +10,15 @@ Aplica-se a qualquer trabalho de frontend — site, landing page, dashboard, Saa
 - **Nunca construa layout sobre lorem ipsum** ou copy de marketing vazia. Escreva o texto real primeiro.
 
 Antes de declarar pronto, confirme os três: plano visual existe, projeto foi executado e inspecionado, segunda passada foi feita ou dispensada com justificativa.
+
+## Conteúdo nunca entra no Git
+
+Material de cliente — briefing, pesquisa, roteiro, criativo, relatório de performance — **nunca** é commitado, em nenhum repositório.
+
+- Todo artefato de conteúdo vai para `$DISSON_HUB/<cliente>/conteudo/` (padrão: `~/_DISSON-HUB`).
+- Se `$DISSON_HUB` não estiver definida, pare e pergunte o caminho antes de escrever.
+- Se encontrar `.claude/content-team/` dentro de um repositório, isso é um erro: mova para o hub e adicione ao `.gitignore`.
+- Antes de qualquer `git add`, verifique se há arquivo de conteúdo no diff. Se houver, remova do stage e avise.
+
+Repositório guarda código e configuração. Conteúdo de cliente vive no hub local.
 <!-- claude-setup:fim -->

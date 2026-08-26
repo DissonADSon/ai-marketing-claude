@@ -5,6 +5,7 @@ argument-hint: objetivo, público, plataforma e formato
 Crie um novo conteúdo com base no seguinte pedido:
 $ARGUMENTS
 Siga este processo:
+0. Confirme $DISSON_HUB e o cliente. Todo arquivo vai para $DISSON_HUB/<cliente>/conteudo/, nunca para o repositorio.
 1. Crie ou atualize briefing.md.
 2. Acione o pesquisador.
 3. Valide research.md.

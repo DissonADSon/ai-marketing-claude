@@ -32,4 +32,7 @@ Responda:
 8. O que precisa ser testado?
 Nunca atribua uma causa sem evidência suficiente.
 Salve o relatório em:
-.claude/content-team/performance.md
+$DISSON_HUB/<cliente>/conteudo/performance.md
+NUNCA escreva conteudo dentro do repositorio do projeto.
+$DISSON_HUB e a variavel de ambiente do hub local (padrao: ~/_DISSON-HUB).
+Se ela nao existir, pergunte o caminho antes de escrever qualquer arquivo.

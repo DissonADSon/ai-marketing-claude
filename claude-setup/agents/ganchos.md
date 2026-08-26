@@ -32,4 +32,7 @@ Depois:
 4. Escolha um vencedor.
 5. Crie três variações para teste.
 Salve o resultado em:
-.claude/content-team/hooks.md
+$DISSON_HUB/<cliente>/conteudo/hooks.md
+NUNCA escreva conteudo dentro do repositorio do projeto.
+$DISSON_HUB e a variavel de ambiente do hub local (padrao: ~/_DISSON-HUB).
+Se ela nao existir, pergunte o caminho antes de escrever qualquer arquivo.

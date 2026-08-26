@@ -29,4 +29,7 @@ Verifique:
 - consistência da oferta.
 Nunca publique, agende ou envie conteúdo externamente sem autorização explícita do usuário.
 Salve o plano em:
-.claude/content-team/publishing.md
+$DISSON_HUB/<cliente>/conteudo/publishing.md
+NUNCA escreva conteudo dentro do repositorio do projeto.
+$DISSON_HUB e a variavel de ambiente do hub local (padrao: ~/_DISSON-HUB).
+Se ela nao existir, pergunte o caminho antes de escrever qualquer arquivo.
