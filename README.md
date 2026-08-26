@@ -75,6 +75,8 @@ pip install reportlab
 | `/market report-pdf <url>` | Professional marketing report (PDF) |
 | `/market seo <url>` | SEO content audit |
 | `/market brand <url>` | Brand voice analysis and guidelines |
+| `/market design <url>` | Design system + landing mockups, ad creatives, social graphics |
+| `/market motion <url>` | Motion graphics: script, storyboard, timing spec, platform exports |
 
 ---
 
@@ -84,7 +86,7 @@ pip install reportlab
 ai-marketing-claude/
 ├── market/SKILL.md                     # Main orchestrator (routes all /market commands)
 │
-├── skills/                             # 14 sub-skills
+├── skills/                             # 16 sub-skills
 │   ├── market-audit/SKILL.md           # Full audit orchestration
 │   ├── market-copy/SKILL.md            # Copywriting analysis & generation
 │   ├── market-emails/SKILL.md          # Email sequence generation
@@ -98,7 +100,9 @@ ai-marketing-claude/
 │   ├── market-report/SKILL.md          # Marketing report (Markdown)
 │   ├── market-report-pdf/SKILL.md      # Marketing report (PDF)
 │   ├── market-seo/SKILL.md             # SEO content audit
-│   └── market-brand/SKILL.md           # Brand voice analysis
+│   ├── market-brand/SKILL.md           # Brand voice analysis
+│   ├── market-design/SKILL.md          # Design system & visual assets
+│   └── market-motion/SKILL.md          # Motion graphics & video creative
 │
 ├── agents/                             # 5 parallel subagents
 │   ├── market-content.md               # Content & messaging analysis

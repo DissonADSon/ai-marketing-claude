@@ -1,0 +1,24 @@
+<!-- claude-setup:inicio -->
+## Interface: nada termina sem ser executado e inspecionado
+
+Aplica-se a qualquer trabalho de frontend — site, landing page, dashboard, SaaS, ferramenta ou app.
+
+- **Antes de programar**, rode `/direcao-visual` e produza o plano visual. Sem plano, sem código.
+- **Depois de programar**, execute o projeto e olhe a tela com `/validar-navegador`. Implementação não inspecionada não está pronta.
+- **Se o primeiro passe estiver funcional mas genérico**, rode `/critica-ui` e faça a segunda passada. O primeiro passe quase sempre é genérico; isso é esperado, não é fracasso.
+- **Erro no console é falha**, mesmo que a tela pareça correta.
+- **Nunca construa layout sobre lorem ipsum** ou copy de marketing vazia. Escreva o texto real primeiro.
+
+Antes de declarar pronto, confirme os três: plano visual existe, projeto foi executado e inspecionado, segunda passada foi feita ou dispensada com justificativa.
+
+## Conteúdo nunca entra no Git
+
+Material de cliente — briefing, pesquisa, roteiro, criativo, relatório de performance — **nunca** é commitado, em nenhum repositório.
+
+- Todo artefato de conteúdo vai para `$DISSON_HUB/<cliente>/conteudo/` (padrão: `~/_DISSON-HUB`).
+- Se `$DISSON_HUB` não estiver definida, pare e pergunte o caminho antes de escrever.
+- Se encontrar `.claude/content-team/` dentro de um repositório, isso é um erro: mova para o hub e adicione ao `.gitignore`.
+- Antes de qualquer `git add`, verifique se há arquivo de conteúdo no diff. Se houver, remova do stage e avise.
+
+Repositório guarda código e configuração. Conteúdo de cliente vive no hub local.
+<!-- claude-setup:fim -->

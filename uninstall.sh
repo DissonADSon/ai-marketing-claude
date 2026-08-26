@@ -15,7 +15,7 @@ SKILLS_DIR="$HOME/.claude/skills"
 AGENTS_DIR="$HOME/.claude/agents"
 
 # Remove skills
-SKILLS=("market" "market-audit" "market-copy" "market-emails" "market-social" "market-ads" "market-funnel" "market-competitors" "market-landing" "market-launch" "market-proposal" "market-report" "market-report-pdf" "market-seo" "market-brand")
+SKILLS=("market" "market-audit" "market-copy" "market-emails" "market-social" "market-ads" "market-funnel" "market-competitors" "market-landing" "market-launch" "market-proposal" "market-report" "market-report-pdf" "market-seo" "market-brand" "market-design" "market-motion")
 for skill in "${SKILLS[@]}"; do
     if [ -d "$SKILLS_DIR/$skill" ]; then
         rm -rf "$SKILLS_DIR/$skill"

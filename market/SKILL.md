@@ -21,6 +21,8 @@ You are a comprehensive AI marketing analysis and content generation system for 
 | `/market report-pdf <url>` | Generate marketing report (PDF) | MARKETING-REPORT.pdf |
 | `/market seo <url>` | SEO content audit | SEO-AUDIT.md |
 | `/market brand <url>` | Brand voice analysis and guidelines | BRAND-VOICE.md |
+| `/market design <url\|brief>` | Visual design system and marketing assets | DESIGN-SYSTEM.md |
+| `/market motion <url\|brief>` | Motion graphics and video creative brief | MOTION-BRIEF.md |
 
 ## Routing Logic
 
@@ -53,6 +55,14 @@ Fast 60-second assessment. Do NOT launch subagents. Instead:
 2. Evaluate: headline clarity, CTA strength, value proposition, trust signals, mobile readiness
 3. Output a quick scorecard with top 3 wins and top 3 fixes
 4. Keep output under 30 lines
+
+### Visual Asset Commands (`/market design`, `/market motion`)
+These two produce assets, not analysis. Both depend on the message being settled first:
+
+- `/market design` extracts or builds the design system, then produces layouts and creatives in three directions (safe / sharp / distinct) with a stated recommendation.
+- `/market motion` writes the script and storyboard, specifies timing and easing, then produces the piece via whichever production route is actually available in the environment.
+
+**Sequencing matters.** Run `/market copy` or `/market brand` first when possible — both skills refuse to work against placeholder text, because layouts and animations built on lorem ipsum collapse when real copy arrives. If visual or video tooling is unavailable, deliver the full specification instead and say so plainly; a precise spec is a real deliverable, a described-but-unproduced asset is not.
 
 ### Individual Commands
 For all other commands (`/market copy`, `/market emails`, etc.), route to the corresponding sub-skill in `skills/market-<command>/SKILL.md`.
