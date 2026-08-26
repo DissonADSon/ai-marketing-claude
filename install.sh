@@ -15,7 +15,7 @@ NC='\033[0m'
 echo ""
 echo -e "${CYAN}╔══════════════════════════════════════════════╗${NC}"
 echo -e "${CYAN}║   AI Marketing Suite — Claude Code Skills    ║${NC}"
-echo -e "${CYAN}║   15 Skills · 5 Agents · 4 Scripts · PDF     ║${NC}"
+echo -e "${CYAN}║   17 Skills · 5 Agents · 4 Scripts · PDF     ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -87,6 +87,8 @@ SKILLS=(
     "market-report-pdf"
     "market-seo"
     "market-brand"
+    "market-design"
+    "market-motion"
 )
 
 SKILL_COUNT=0
@@ -217,6 +219,8 @@ echo "  /market report <url>       Marketing report (Markdown)"
 echo "  /market report-pdf <url>   Marketing report (PDF)"
 echo "  /market seo <url>          SEO content audit"
 echo "  /market brand <url>        Brand voice analysis"
+echo "  /market design <url>       Design system & visual assets"
+echo "  /market motion <url>       Motion graphics & video creative"
 echo ""
 echo -e "  ${YELLOW}Start a new Claude Code session to use the skills.${NC}"
 echo ""
