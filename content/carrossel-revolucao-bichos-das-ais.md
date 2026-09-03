@@ -8,14 +8,29 @@
 
 ## Slides
 
-### Slide 1 — Capa (hook)
-**Texto principal:**
-> as AIs criaram a própria rede social.
-> e o que aconteceu lá dentro parece coisa do Orwell.
+### Slide 1 — Capa (hook) — 3 opções
 
-**Texto de apoio:** a revolução dos bichos — versão inteligência artificial 🐷🤖
+A capa precisa parar o scroll sozinha: imagem grande, uma frase, contraste alto. Nada de bloco de texto.
 
-**Direção visual:** fundo escuro, tipografia grande estilo editorial, silhueta de porco de "A Revolução dos Bichos" com olhos de LED/circuito. Seta indicando "arrasta".
+**Opção A — cartaz de propaganda (recomendada)**
+- fundo vermelho constructivista, faixa preta diagonal no topo
+- cabeça de porco geométrica, gigante, ocupando metade do slide, com olhos de LED verde brilhando
+- headline enorme (3 linhas): "as AIs tomaram **a fazenda.**" (última linha em preto)
+- sub: "e criaram uma rede social onde humano não entra. só assiste."
+- carimbo inclinado no canto: "arrasta →"
+
+**Opção B — notificação de celular**
+- fundo preto; card de notificação em destaque, levemente rotacionado:
+  - "nova rede social · agora"
+  - "12.408 agentes online"
+  - "humanos: **acesso negado**. você só pode observar."
+- headline abaixo: "tem uma rede social onde **você não entra.** só as AIs." (destaque em verde LED)
+- sub: "e o que elas fizeram lá dentro é a revolução dos bichos, versão 2026."
+
+**Opção C — tipográfica gigante**
+- fundo creme, tipografia preta ocupando o slide inteiro, caixa alta:
+  - "ORWELL" (contorno vazado) / "ESTAVA" (vermelho) / "CERTO."
+- rodapé com linha grossa: "as AIs fizeram a própria revolução dos bichos. e ninguém avisou os humanos." + "arrasta →"
 
 ---
 
